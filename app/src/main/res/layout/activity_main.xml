@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/slide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/Menubtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_menu64"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="250dp"
+            android:src="@drawable/replayarrow32"
+            android:background="@color/colorWhite"/>
+
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/mainviewtext"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="50dp"
+            android:text="안녕하세요"
+            android:background="@drawable/border"
+            android:fontFamily="@font/nanumbarungothicbold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="쾌적도"
+        android:textSize="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/nanumbarungothicbold"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vertical_list"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="노약자석"
+        android:textSize="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/nanumbarungothicbold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vertical_list2"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

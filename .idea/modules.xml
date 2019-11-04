@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Sliding_test.iml" filepath="$PROJECT_DIR$/Sliding_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mariadbjavaclient2.5.1sources/mariadbjavaclient2.5.1sources.iml" filepath="$PROJECT_DIR$/mariadbjavaclient2.5.1sources/mariadbjavaclient2.5.1sources.iml" />
+    </modules>
+  </component>
+</project>

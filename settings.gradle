@@ -1,0 +1,2 @@
+include ':app', ':mariadbjavaclient2.5.1sources'
+rootProject.name='Sliding_test'
