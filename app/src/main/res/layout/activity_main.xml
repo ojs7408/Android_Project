@@ -25,6 +25,7 @@
             android:layout_gravity="center" />
 
         <ImageButton
+            android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -43,7 +44,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:textSize="50dp"
-            android:text="안녕하세요"
+            android:text="로딩중"
             android:background="@drawable/border"
             android:fontFamily="@font/nanumbarungothicbold"/>
 
