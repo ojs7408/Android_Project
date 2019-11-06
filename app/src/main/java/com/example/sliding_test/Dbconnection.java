@@ -2,6 +2,8 @@ package com.example.sliding_test;
 
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -10,57 +12,38 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-class Dbconnection extends Thread {
+public class Dbconnection extends AppCompatActivity {
 
-    private String result;
-    private String URL;
+    public static String[] Subway(String sub){
+        String test = "https://seulgi.me/average.php";
+        URLConnector task = new URLConnector(test);
 
-    public Dbconnection(String url){
-        URL = url;
-    }
+        task.start();
 
-    @Override
-    public void run() {
-        final String output = request(URL);
-        result = output;
-    }
+        try{
+            task.join();
+            System.out.println("waiting... for result");
+        }
+        catch(InterruptedException e){
 
-    public String getResult(){
+        }
+
+        String str1 = task.getResult();
+        String str2, str3;
+        String target = sub;
+        int target_num1 = str1.indexOf(target);
+        str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
+        int target_num2 = str1.indexOf(", ");
+        str3 = str2.substring(target_num2+2,(str2.substring(target_num2).indexOf("*")+target_num2));
+        String[] result = str3.split(", ");
+
+
+        for(int i=0; i < result.length; i++)
+        {
+            System.out.println(result[i]);
+        }
+
         return result;
     }
 
-    private String request(String urlStr) {
-        StringBuilder output = new StringBuilder();
-        try {
-            java.net.URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            if (conn != null) {
-                conn.setConnectTimeout(10000);
-                conn.setRequestMethod("GET");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                int resCode = conn.getResponseCode();
-                if (resCode == HttpURLConnection.HTTP_OK) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream())) ;
-                    String line = null;
-                    while(true) {
-                        line = reader.readLine();
-                        if (line == null) {
-                            break;
-                        }
-                        output.append(line + "\n");
-                    }
-
-                    reader.close();
-                    conn.disconnect();
-                }
-            }
-        } catch(Exception ex) {
-            Log.e("SampleHTTP", "Exception in processing response.", ex);
-            ex.printStackTrace();
-        }
-
-        return output.toString();
-    }
 }

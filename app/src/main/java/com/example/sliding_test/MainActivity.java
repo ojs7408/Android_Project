@@ -64,19 +64,9 @@ public class MainActivity extends AppCompatActivity {
         }
         lm.requestLocationUpdates("network", 0, 0, locationListener);
         //network 끝
-        //DB 시작//
-        String test = "https://seulgi.me/junseok.php";
-        Dbconnection task = new Dbconnection(test);
-        task.start();
-        try {
-            task.join();
-            System.out.println("waiting.... for result");
-        } catch (InterruptedException e) {
-
-        }
-        String result = task.getResult();
-        System.out.println(result);
-        //DB 끝//
+        //DB 테스트
+        Dbconnection.Subway("0668");
+        //DB 테스트 끝
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
