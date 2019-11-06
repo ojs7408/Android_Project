@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     TextView Mainviewtext;
     ImageButton btn;
     String tmp =null ,tmp2 =null;
+    public int Figure=0;
+    public String Testfigure;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //network 주소 받기
+        /*
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        lm.requestLocationUpdates("network", 0, 0, locationListener);
+        lm.requestLocationUpdates("network", 0, 0, locationListener);*/
         //network 끝
         //DB 시작//
         String test = "https://seulgi.me/junseok.php";
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         String result = task.getResult();
         System.out.println(result);
         //DB 끝//
+        Figure = Integer.parseInt(Testfigure);
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 lm.requestLocationUpdates("network", 0, 0, locationListener);
                 Toast.makeText(MainActivity.this, "새로고침 완료.", Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
         Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
