@@ -69,7 +69,7 @@ public class Statistics  extends AppCompatActivity {
             public void onClick(View v) {
                 PopupMenu popup = new PopupMenu(Statistics.this,Menubtn);
                 MenuInflater inf = popup.getMenuInflater();
-                inf.inflate(R.menu.mymenu, popup.getMenu());
+                inf.inflate(R.menu.statistics_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
