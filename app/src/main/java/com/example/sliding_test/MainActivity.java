@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     TextView Mainviewtext;
     ImageButton btn;
     String tmp = null, tmp2 = null;
-    String stayion;
+    String btrainNo;   // 기차 번호
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         lm.requestLocationUpdates("network", 0, 0, locationListener);
         //network 끝
         //DB 테스트
-        //System.out.println(Dbconnection.Subway("0668"));
+        //System.out.println(Dbconnection.Subway("btrainNo"));
         //DB 테스트 끝
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -166,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
             tmp = Double.toString(longitude);
             tmp2 = Double.toString(latitude);
             Api_adrss api_adrss=new Api_adrss();                        //API 클래스 생성
-            stayion = api_adrss.adrss(tmp, tmp2);
-            Mainviewtext.setText(stayion);           //API 받아온 부분
+            btrainNo = api_adrss.adrss(tmp, tmp2);
+            Mainviewtext.setText(btrainNo);           //API 받아온 부분
             // Stop the update to prevent changing the location.
             lm.removeUpdates(this);
         }
