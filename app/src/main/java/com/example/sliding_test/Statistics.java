@@ -33,7 +33,7 @@ public class Statistics  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_activity);
-
+        //test
 
         //날짜 Define함 min max Date
         Date minDate = LazyDatePicker.stringToDate("01-01-2016", DATE_FORMAT);
