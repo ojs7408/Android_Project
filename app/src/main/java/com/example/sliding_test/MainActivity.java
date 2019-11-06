@@ -31,6 +31,7 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -40,31 +41,28 @@ public class MainActivity extends AppCompatActivity {
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
-    private RecyclerView mVerticalView,mVerticalView2;
+    private RecyclerView mVerticalView, mVerticalView2;
     private VerticalAdapter mAdapter, mAdapter2;
-    private LinearLayoutManager mLayoutManager,mLayoutManager2;
+    private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     private int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
     TextView Mainviewtext;
     ImageButton btn;
-    String tmp =null ,tmp2 =null;
-    public int Figure=0;
-    public String Testfigure;
+    String tmp = null, tmp2 = null;
+    String stayion;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //network 주소 받기
-        /*
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        lm.requestLocationUpdates("network", 0, 0, locationListener);*/
+        lm.requestLocationUpdates("network", 0, 0, locationListener);
         //network 끝
         //DB 시작//
         String test = "https://seulgi.me/junseok.php";
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         String result = task.getResult();
         System.out.println(result);
         //DB 끝//
-        Figure = Integer.parseInt(Testfigure);
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 lm.requestLocationUpdates("network", 0, 0, locationListener);
                 Toast.makeText(MainActivity.this, "새로고침 완료.", Toast.LENGTH_SHORT).show();
-
-
-
             }
         });
         Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
@@ -207,7 +201,8 @@ public class MainActivity extends AppCompatActivity {
             tmp = Double.toString(longitude);
             tmp2 = Double.toString(latitude);
             Api_adrss api_adrss=new Api_adrss();                        //API 클래스 생성
-            Mainviewtext.setText(api_adrss.adrss(tmp, tmp2));           //API 받아온 부분
+            stayion = api_adrss.adrss(tmp, tmp2);
+            Mainviewtext.setText(stayion);           //API 받아온 부분
             // Stop the update to prevent changing the location.
             lm.removeUpdates(this);
         }
