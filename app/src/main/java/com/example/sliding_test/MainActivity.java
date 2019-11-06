@@ -47,31 +47,15 @@ public class MainActivity extends AppCompatActivity {
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     private int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
-    public static final int MY_PERMISSIONS_REQUEST = 1000;
     TextView Mainviewtext;
     ImageButton btn;
     String tmp = null, tmp2 = null;
-
+    String stayion;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // 위치 권한 승인요구
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST);
-            }
-        }
-        // 위치권한 끝
         //network 주소 받기
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
@@ -217,7 +201,8 @@ public class MainActivity extends AppCompatActivity {
             tmp = Double.toString(longitude);
             tmp2 = Double.toString(latitude);
             Api_adrss api_adrss=new Api_adrss();                        //API 클래스 생성
-            Mainviewtext.setText(api_adrss.adrss(tmp, tmp2));           //API 받아온 부분
+            stayion = api_adrss.adrss(tmp, tmp2);
+            Mainviewtext.setText(stayion);           //API 받아온 부분
             // Stop the update to prevent changing the location.
             lm.removeUpdates(this);
         }
