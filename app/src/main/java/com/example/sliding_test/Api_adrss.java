@@ -7,11 +7,12 @@ import java.net.URL;
 
 
 public class Api_adrss  {
-    String adrs,index_y,index_x,index_stayion,index_line;
+    String adrs,index_y,index_x,index_stayion,index_line,index_btrainNo;
     public String adrss(String string2,String string1){
         BufferedReader br = null;
         BufferedReader br1 = null;
         BufferedReader br2 = null;
+        BufferedReader br3 = null;
         try{
             String urlstr = "http://api.vworld.kr/req/address?service=address&request=getAddress&key=C7E2DE1C-8090-3CDD-A600-D76315E08739&point="+ string2+","+ string1 +"&type=BOTH&format=json";
             URL url = new URL(urlstr);
@@ -60,9 +61,24 @@ public class Api_adrss  {
             index_stayion = result2.substring(target_stayion, (result2.substring(target_stayion).indexOf("\",\"subwayId\":")+target_stayion));
             index_line = result2.substring(target_line, (result2.substring(target_line).indexOf("\",\"statnNmEng")+target_line));
         }catch(Exception e){
+
+        }
+        try{
+        String urlstr ="http://swopenAPI.seoul.go.kr/api/subway/6a4565616c6a6777393145686e4972/json/realtimeStationArrival/0/1/"+index_stayion;
+        URL url = new URL(urlstr);
+        HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+        urlconnection.setRequestMethod("GET");
+        br3 = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(),"UTF-8"));
+        String result3 = "";
+        String line3;
+        if((line3 = br3.readLine()) != null)
+            result3 = result3 + line3 + "\n";
+        int target_btrainNo= result3.indexOf("\"btrainNo\":\"")+12;
+        index_btrainNo = result3.substring(target_btrainNo, (result3.substring(target_btrainNo).indexOf("\",\"bstatnId\"")+target_btrainNo));
+        }catch (Exception e) {
             String er="통신및위치오류";
             return er;
         }
-        return index_stayion;
+        return index_btrainNo;
     }
 }

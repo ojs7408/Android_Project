@@ -21,7 +21,7 @@
             android:adjustViewBounds="true"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_menu64"
+            app:srcCompat="@drawable/ic_menu64"
             android:layout_gravity="center" />
 
         <ImageButton
@@ -44,7 +44,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:textSize="50dp"
-            android:text="로딩중"
+            android:text="새로고침을 눌러보세요"
             android:background="@drawable/border"
             android:fontFamily="@font/nanumbarungothicbold"/>
 
