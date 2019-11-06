@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         lm.requestLocationUpdates("network", 0, 0, locationListener);
         //network 끝
         //DB 테스트
-        Dbconnection.Subway("0668");
+        System.out.println(Dbconnection.Subway("0668"));
         //DB 테스트 끝
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -114,33 +114,6 @@ public class MainActivity extends AppCompatActivity {
             i++;
         }
 
-
-       /* // GPS 권한 받기
-        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-
-                    // 권한 없음
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                            REQUEST_ACCESS_FINE_LOCATION);
-                } else {
-                }
-                if (permissionCheck != PackageManager.PERMISSION_DENIED){
-                    String locationProvider = LocationManager.NETWORK_PROVIDER;
-                Location location = lm.getLastKnownLocation(locationProvider);
-                double longitude = location.getLongitude();
-                double latitude = location.getLatitude();
-                System.out.println(location);
-                tmp = Double.toString(longitude);
-                tmp2 = Double.toString(latitude);
-            }
-        }
-        else{
-        }
-*/
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         mLayoutManager = new LinearLayoutManager(this);
