@@ -114,13 +114,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<VerticalData> data = new ArrayList<>();
+        ArrayList<VerticalData> data1 = new ArrayList<>();
+        ArrayList<VerticalData> data2 = new ArrayList<>();
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
+            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
+            data2.add(new VerticalData(R.drawable.top_train0, ""));
             i++;
         }
+
 
        /* // GPS 권한 받기
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -157,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
         mVerticalView.setLayoutManager(mLayoutManager);
         mVerticalView2.setLayoutManager(mLayoutManager2);
         mAdapter = new VerticalAdapter();
-        mAdapter.setData(data);
+        mAdapter.setData(data1);
         mAdapter2 = new VerticalAdapter();
-        mAdapter2.setData(data);
+        mAdapter2.setData(data2);
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
     }
