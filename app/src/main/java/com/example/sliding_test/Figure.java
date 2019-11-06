@@ -11,9 +11,10 @@ public class Figure {
 
     }
 
-    public String Figure_set()
+    public void Figure_set()
     {
-        return null;
+
+
     }
 
     public String Figure_check()

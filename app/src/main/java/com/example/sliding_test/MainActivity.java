@@ -1,15 +1,11 @@
 package com.example.sliding_test;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,20 +15,14 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
@@ -128,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data.add(new VerticalData(R.drawable.traindefault, i+1 +""));
+            data.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
             i++;
         }
 
