@@ -31,6 +31,7 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -40,21 +41,37 @@ public class MainActivity extends AppCompatActivity {
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
-    private RecyclerView mVerticalView,mVerticalView2;
+    private RecyclerView mVerticalView, mVerticalView2;
     private VerticalAdapter mAdapter, mAdapter2;
-    private LinearLayoutManager mLayoutManager,mLayoutManager2;
+    private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     private int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
+    public static final int MY_PERMISSIONS_REQUEST = 1000;
     TextView Mainviewtext;
     ImageButton btn;
-    String tmp =null ,tmp2 =null;
+    String tmp = null, tmp2 = null;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 위치 권한 승인요구
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST);
+            }
+        }
+        // 위치권한 끝
         //network 주소 받기
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
