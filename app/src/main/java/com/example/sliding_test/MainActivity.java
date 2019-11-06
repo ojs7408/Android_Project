@@ -1,15 +1,11 @@
 package com.example.sliding_test;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,20 +15,14 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
@@ -114,13 +104,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<VerticalData> data = new ArrayList<>();
+        ArrayList<VerticalData> data1 = new ArrayList<>();
+        ArrayList<VerticalData> data2 = new ArrayList<>();
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data.add(new VerticalData(R.drawable.traindefault, i+1 +""));
+            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
+            data2.add(new VerticalData(R.drawable.top_train0, ""));
             i++;
         }
+
 
        /* // GPS 권한 받기
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -157,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
         mVerticalView.setLayoutManager(mLayoutManager);
         mVerticalView2.setLayoutManager(mLayoutManager2);
         mAdapter = new VerticalAdapter();
-        mAdapter.setData(data);
+        mAdapter.setData(data1);
         mAdapter2 = new VerticalAdapter();
-        mAdapter2.setData(data);
+        mAdapter2.setData(data2);
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
     }
