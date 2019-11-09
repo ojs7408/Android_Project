@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this,Popupmain.class);
+                intent.putExtra("name","1호선");
                 startActivityForResult(intent, 1);
             }
         });
