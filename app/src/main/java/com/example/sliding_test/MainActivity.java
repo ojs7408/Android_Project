@@ -118,9 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
-            data2.add(new VerticalData(R.drawable.top_train0, ""));
+            data1.add(new VerticalData(R.drawable.side_traindefault_test, i+1 +""));
+            data2.add(new VerticalData(R.drawable.top_train0_test, ""));
             i++;
+            //
         }
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
