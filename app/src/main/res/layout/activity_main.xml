@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DAE7EC"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -23,18 +23,18 @@
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
             android:adjustViewBounds="true"
-            android:background="#03A9F4"
+            android:background="#7BD6F8"
             app:srcCompat="@drawable/ic_menu64" />
 
         <TextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
             android:fontFamily="@font/nanumbarungothicbold"
+            android:gravity="center_horizontal"
             android:text="지하철 정보"
-            android:textSize="25dp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:textSize="25dp" />
 
         <ImageButton
             android:id="@+id/btn"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="15dp"
-            android:background="#03A9F4"
+            android:background="#7BD6F8"
             android:src="@drawable/replayarrow32" />
 
     </LinearLayout>
@@ -50,14 +50,14 @@
 
     <TextView
         android:id="@+id/mainviewtext"
-        android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/border"
         android:fontFamily="@font/nanumbarungothicbold"
+        android:gravity="center_horizontal"
         android:text="새로고침을 눌러보세요"
         android:textSize="40dp" />
 
@@ -65,17 +65,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/nanumbarungothicbold"
         android:text="쾌적도"
-        android:textSize="30dp" />
+        android:textSize="25dp"
+        android:textColor="#000000" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vertical_list"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="130dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp" />
 
     <TextView
@@ -85,20 +86,31 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanumbarungothicbold"
         android:text="노약자석"
-        android:textSize="30dp" />
+        android:textSize="25dp"
+        android:textColor="#000000" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vertical_list2"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="130dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#03A9F4">
+        android:background="@drawable/bottom_layout_border">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:gravity="center_horizontal"
+            android:text="Hacheol2   ver1.0.     Made by. u_ri_Oh."
+            android:textColor="#000000"
+            android:textSize="15dp" />
 
 
     </LinearLayout>

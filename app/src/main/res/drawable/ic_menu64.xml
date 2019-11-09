@@ -1,6 +1,6 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="46dp"
-    android:height="46dp"
+    android:width="35dp"
+    android:height="35dp"
     android:viewportWidth="295"
     android:viewportHeight="295">
   <path
@@ -12,19 +12,19 @@
   <path
       android:pathData="M84.185,90.185L210.658,90.185C213.971,90.185 216.658,87.498 216.658,84.185C216.658,80.872 213.971,78.185 210.658,78.185L84.185,78.185C80.872,78.185 78.185,80.872 78.185,84.185C78.185,87.498 80.872,90.185 84.185,90.185Z"
       android:strokeWidth="1"
-      android:fillColor="#FB4A5E"
+      android:fillColor="#000000"
       android:fillType="nonZero"
       android:strokeColor="#00000000"/>
   <path
       android:pathData="M84.185,153.421L210.658,153.421C213.971,153.421 216.658,150.734 216.658,147.421C216.658,144.108 213.971,141.421 210.658,141.421L84.185,141.421C80.872,141.421 78.185,144.108 78.185,147.421C78.185,150.734 80.872,153.421 84.185,153.421Z"
       android:strokeWidth="1"
-      android:fillColor="#FB4A5E"
+      android:fillColor="#000000"
       android:fillType="nonZero"
       android:strokeColor="#00000000"/>
   <path
       android:pathData="M216.658,210.658C216.658,207.345 213.971,204.658 210.658,204.658L84.185,204.658C80.872,204.658 78.185,207.345 78.185,210.658C78.185,213.971 80.872,216.658 84.185,216.658L210.658,216.658C213.971,216.658 216.658,213.971 216.658,210.658Z"
       android:strokeWidth="1"
-      android:fillColor="#FB4A5E"
+      android:fillColor="#000000"
       android:fillType="nonZero"
       android:strokeColor="#00000000"/>
 </vector>
