@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
-    private int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
+    public int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
     LocationManager locationManager;
     TextView Mainviewtext;
     ImageButton btn;
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         lm.requestLocationUpdates("network", 0, 0, locationListener);
         //network 끝
         //DB 테스트
+        //String[] test1 = Dbconnection.Subway("0668");
+       // System.out.println(test1[1]);
         //System.out.println(Dbconnection.Subway("btrainNo"));
         //DB 테스트 끝
         btn = (ImageButton)findViewById(R.id.btn);
@@ -79,15 +81,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "새로고침 완료.", Toast.LENGTH_SHORT).show();
             }
         });
-        Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
-        mVerticalView = (RecyclerView) findViewById(R.id.vertical_list);
-        mVerticalView2=(RecyclerView) findViewById(R.id.vertical_list2);
-        Menubtn = (ImageButton) findViewById(R.id.Menubtn);
-        Menubtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popup = new PopupMenu(MainActivity.this,Menubtn);
-                MenuInflater inf = popup.getMenuInflater();
+                Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
+                mVerticalView = (RecyclerView) findViewById(R.id.vertical_list);
+                mVerticalView2=(RecyclerView) findViewById(R.id.vertical_list2);
+                Menubtn = (ImageButton) findViewById(R.id.Menubtn);
+                Menubtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PopupMenu popup = new PopupMenu(MainActivity.this,Menubtn);
+                        MenuInflater inf = popup.getMenuInflater();
                 inf.inflate(R.menu.mymenu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -121,25 +123,35 @@ public class MainActivity extends AppCompatActivity {
         while (i < MAX_ITEM_COUNT) {
             data1.add(new VerticalData(R.drawable.side_traindefault_test, i+1 +""));
             data2.add(new VerticalData(R.drawable.top_train0_test, ""));
-            i++;
-            //
-        }
+        i++;
+        //
+    }
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        mLayoutManager = new LinearLayoutManager(this);
+    mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mLayoutManager2 = new LinearLayoutManager(this);
+    mLayoutManager2 = new LinearLayoutManager(this);
         mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         mVerticalView.setLayoutManager(mLayoutManager);
         mVerticalView2.setLayoutManager(mLayoutManager2);
-        mAdapter = new VerticalAdapter();
+
+    mAdapter = new VerticalAdapter();
         mAdapter.setData(data1);
-        mAdapter2 = new VerticalAdapter();
+    mAdapter2 = new VerticalAdapter();
         mAdapter2.setData(data2);
+
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
-    }
+
+        data1.clear();
+        data1=  Figure.Figure_set(btrainNo);
+        mAdapter.setData(data1);
+        mVerticalView.setAdapter(mAdapter);
+
+
+}
 
     @Override
     public void onBackPressed() {
