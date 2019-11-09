@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ADD8E6"
+    android:background="#DAE7EC"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -23,6 +23,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:adjustViewBounds="true"
+            android:background="#DAE7EC"
             app:srcCompat="@drawable/ic_menu64" />
 
         <ImageButton
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="300dp"
             android:layout_marginTop="35dp"
-            android:background="@color/colorWhite"
+            android:background="#DAE7EC"
             android:src="@drawable/replayarrow32" />
 
     </LinearLayout>
