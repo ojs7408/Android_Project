@@ -74,8 +74,6 @@ public class Statistics  extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if(item.getItemId() == R.id.Statistics_btn){
-                            Intent intent = new Intent(Statistics.this,MainActivity.class);
-                            startActivity(intent);
                             finish();
                             return true;
                         }

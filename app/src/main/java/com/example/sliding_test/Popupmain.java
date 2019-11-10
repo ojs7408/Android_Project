@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class Popupmain extends Activity {
     ImageButton button1;
@@ -42,9 +43,17 @@ public class Popupmain extends Activity {
         String Arrival = Searchs[2];
         String[] list1 = Current.split(",");
         String[] list2 = Arrival.split(",");
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.popup_items, R.id.itemss1, list1);
-        ListView listview = (ListView) findViewById(R.id.popuplist);
+
+        // api 검색끝
+        ListView listview ;
+        ListViewAdapter adapter;
+        adapter = new ListViewAdapter() ;
+        listview = (ListView) findViewById(R.id.popuplist);
         listview.setAdapter(adapter);
+        for(int i=0;i<list1.length;i++) {
+            adapter.addItem(list1[i], list2[i]);
+        }
+
 
     }
 }

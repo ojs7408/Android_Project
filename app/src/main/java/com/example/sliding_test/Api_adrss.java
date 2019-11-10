@@ -111,7 +111,7 @@ public class Api_adrss  {
         }catch (Exception e) {
             System.out.println(e);
         }
-        return index_Current+"/"+index_trains+"/"+index_Arrival+";";
+        return index_Current+"/"+index_trains+"/"+index_Arrival;
     }
 }
 

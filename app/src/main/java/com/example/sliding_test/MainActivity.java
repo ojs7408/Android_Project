@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                         if(item.getItemId() == R.id.Statistics_btn){
                             Intent intent = new Intent(MainActivity.this,Statistics.class);
                             startActivity(intent);
-                            finish();
                             return true;
                         }
                         return false;

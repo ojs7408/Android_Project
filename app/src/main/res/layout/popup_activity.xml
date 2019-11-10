@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     >
-
+<GridLayout>
     <ImageButton
         android:id="@+id/stayline1"
         android:layout_width="216dp"
@@ -88,15 +88,14 @@
         android:src="@drawable/lines9"
         >
     </ImageButton>
-
+</GridLayout>
 
     <ListView
         android:id="@+id/popuplist"
-        android:layout_width="150dp"
+        android:layout_width="199dp"
         android:layout_height="match_parent"
-        android:layout_row="1"
-        android:layout_column="2"
-        >
+        android:layout_row="0"
+        android:layout_column="1">
 
     </ListView>
 </GridLayout>
