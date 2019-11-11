@@ -29,7 +29,7 @@ public class Popupmain extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (Popupmain.this,Popupmain.class);
-                intent.putExtra("name","2호선");
+                intent.putExtra("line","2호선");
                 startActivityForResult(intent, 1);
                 finish();
             }

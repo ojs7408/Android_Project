@@ -85,7 +85,7 @@ public class Api_adrss  {
     public String trains(String lines){
         try {
             if (lines.equals("test")) {
-                return "test/test/test/천안/인천/1111/용산/인천/2222";
+                return "test,천안,용산/test,1111,2222/인천,인천,2222";
             }
                 for (int i = 1; i < 50; i++) {
                     BufferedReader br4 = null;

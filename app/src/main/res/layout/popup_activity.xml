@@ -93,9 +93,9 @@
         android:id="@+id/stayline10"
         android:layout_width="216dp"
         android:layout_height="60dp"
-        android:layout_row="9"
+        android:layout_row="10"
         android:layout_column="1"
-        android:src="@drawable/lines9"
+        android:src="@drawable/liness1"
         >
     </ImageButton>
 </GridLayout>
