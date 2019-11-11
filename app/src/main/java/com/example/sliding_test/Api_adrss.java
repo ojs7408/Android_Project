@@ -83,34 +83,38 @@ public class Api_adrss  {
         return index_btrainNo;
     }
     public String trains(String lines){
-        try{
-            for(int i =1 ; i<50;i++) {
-                BufferedReader br4 = null;
-                String urlstr = "http://swopenAPI.seoul.go.kr/api/subway/6a4565616c6a6777393145686e4972/json/realtimePosition/"+i+"/"+i+"/"+lines;
-                URL url = new URL(urlstr);
-                HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
-                urlconnection.setRequestMethod("GET");
-                br4 = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
-                String result4 = "";
-                String line4;
-                if ((line4 = br4.readLine()) != null)
-                    result4 = result4 + line4 + "\n";
-                int target_statnm = result4.indexOf("\"statnNm\":\"") + 11;
-                int target_trainNo = result4.indexOf("\",\"trainNo\":\"")+13;
-                int target_statntnm= result4.indexOf("statnTnm\":\"")+11;
-                index_Current= index_Current +","+result4.substring(target_statnm, (result4.substring(target_statnm).indexOf("\",\"trainNo\":\"")  + target_statnm));     //현재역
-                index_trains= index_trains +","+result4.substring(target_trainNo, (result4.substring(target_trainNo).indexOf("\",\"lastRecptnDt") + target_trainNo));     //열차아이디
-                index_Arrival=index_Arrival +","+result4.substring(target_statntnm, (result4.substring(target_statntnm).indexOf("\",\"trainSttus") + target_statntnm));     //도착역
+        try {
+            if (lines.equals("test")) {
+                return "test/test/test/천안/인천/1111/용산/인천/2222";
             }
+                for (int i = 1; i < 50; i++) {
+                    BufferedReader br4 = null;
+                    String urlstr = "http://swopenAPI.seoul.go.kr/api/subway/6a4565616c6a6777393145686e4972/json/realtimePosition/" + i + "/" + i + "/" + lines;
+                    URL url = new URL(urlstr);
+                    HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+                    urlconnection.setRequestMethod("GET");
+                    br4 = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8"));
+                    String result4 = "";
+                    String line4;
+                    if ((line4 = br4.readLine()) != null)
+                        result4 = result4 + line4 + "\n";
+                    int target_statnm = result4.indexOf("\"statnNm\":\"") + 11;
+                    int target_trainNo = result4.indexOf("\",\"trainNo\":\"") + 13;
+                    int target_statntnm = result4.indexOf("statnTnm\":\"") + 11;
+                    index_Current = index_Current + "," + result4.substring(target_statnm, (result4.substring(target_statnm).indexOf("\",\"trainNo\":\"") + target_statnm));     //현재역
+                    index_trains = index_trains + "," + result4.substring(target_trainNo, (result4.substring(target_trainNo).indexOf("\",\"lastRecptnDt") + target_trainNo));     //열차아이디
+                    index_Arrival = index_Arrival + "," + result4.substring(target_statntnm, (result4.substring(target_statntnm).indexOf("\",\"trainSttus") + target_statntnm));     //도착역
+                }
 /*
             String[] Current =index_Current.split(",");
             String[] Trains =index_trains.split(",");
             String[] Arrival =index_Arrival.split(",");
             for (int i=0 ;i<=50;i++)
             System.out.println(Current[i]+Trains[i]+Arrival[i]);*/
-        }catch (Exception e) {
-            System.out.println(e);
-        }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+
         return index_Current+"/"+index_trains+"/"+index_Arrival;
     }
 }
