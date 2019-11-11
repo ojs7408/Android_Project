@@ -46,4 +46,23 @@ public class Dbconnection extends AppCompatActivity {
         return result;
     }
 
+    public static String UseTable(String sub){
+        String test = "https://seulgi.me/chair.php";
+        URLConnector task = new URLConnector(test);
+
+        task.start();
+
+        try{
+            task.join();
+            System.out.println("waiting... for result");
+        }
+        catch(InterruptedException e){
+
+        }
+
+        String result = task.getResult();
+
+        return result;
+    }
+
 }
