@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageButton
         android:id="@+id/Menubtn"
@@ -14,28 +15,16 @@
         android:src="@drawable/ic_menu64"
         android:layout_gravity="center" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/chart"
-        android:layout_marginBottom="69dp">
-    </androidx.appcompat.widget.AppCompatSpinner>
-
-    <com.rey.material.widget.Spinner
-        style="@style/Material.Widget.Spinner"
-        android:layout_marginLeft="220dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/lazyDatePicker"
-        app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
     <com.mikhaellopez.lazydatepicker.LazyDatePicker
         android:id="@+id/lazyDatePicker"
         android:layout_above="@+id/chart"
         android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:ldp_date_format="mm-dd-yyyy" />
 
     <com.github.mikephil.charting.charts.LineChart
@@ -43,5 +32,6 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>
-
 </RelativeLayout>
+
+</LinearLayout>
