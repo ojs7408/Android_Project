@@ -70,18 +70,18 @@
     <com.mikhaellopez.lazydatepicker.LazyDatePicker
         android:id="@+id/lazyDatePicker"
         android:layout_above="@+id/chart"
-        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:gravity="center"
         app:ldp_date_format="mm-dd-yyyy"
-        android:layout_weight="2.25" />
+        android:layout_weight="0.5" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="2.25"/>
+        android:layout_weight="4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
