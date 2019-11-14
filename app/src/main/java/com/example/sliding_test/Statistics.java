@@ -143,8 +143,8 @@ public class Statistics  extends AppCompatActivity {
         });
 
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
+        entries.add(new Entry(4f, 0)); // 5시 포화도
+        entries.add(new Entry(8f, 1)); // 6시 포화도
         entries.add(new Entry(6f, 2));
         entries.add(new Entry(2f, 3));
         entries.add(new Entry(18f, 4));
@@ -157,30 +157,20 @@ public class Statistics  extends AppCompatActivity {
         entries.add(new Entry(62f, 12));
         entries.add(new Entry(77f, 13));
 
+
+
         LineDataSet dataset = new LineDataSet(entries, "# of Calls");
 
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("5시");
-        labels.add("6시");
-        labels.add("7시");
-        labels.add("8시");
-        labels.add("9시");
-        labels.add("10시");
-        labels.add("11시");
-        labels.add("12시");
-        labels.add("13시");
-        labels.add("14시");
-        labels.add("15시");
-        labels.add("16시");
-        labels.add("17시");
-        labels.add("18시");
-        labels.add("19시");
-        labels.add("20시");
-        labels.add("21시");
-        labels.add("22시");
-        labels.add("23시");
+        ArrayList<String> labels = new ArrayList<>();
+        int i=5;
+        while (i<24) {
+            labels.add(i + "시");
+            i++;
+        }
         labels.add("00시");
         labels.add("01시");
+
+
 
         LineData data = new LineData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
