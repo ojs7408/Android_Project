@@ -37,6 +37,7 @@ public class Statistics  extends AppCompatActivity {
     TextView Dateset;
     Button Searchbtn;
     String time,lol;
+    String[] result2 = new String[21];
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
@@ -110,10 +111,21 @@ public class Statistics  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StaristicDB staristicDB =new StaristicDB();
-                String dbretrun =staristicDB.staristicdb(lol,time);
-System.out.println(time);
-                System.out.println(dbretrun);
 
+                String str1 = staristicDB.staristicdb(lol,time);
+                String str2, str3;
+                String[] result1;
+                String target = "\"h_05\":";
+                int target_num1 = str1.indexOf(target);
+
+                str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("            }")+target_num1));
+                result1 = str2.split(",                ");
+
+                for(int i = 0; i < 21; i++)
+                {
+                    int target_num2 = result1[i].indexOf("\": \"")+4;
+                    result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
+                }
             }
         });
 
@@ -146,27 +158,10 @@ System.out.println(time);
         });
 
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(4f, 0)); // 5시 포화도
-        entries.add(new Entry(8f, 1)); // 6시 포화도
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(2f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
-        entries.add(new Entry(16f, 6));
-        entries.add(new Entry(5f, 7));
-        entries.add(new Entry(3f, 8));
-        entries.add(new Entry(7f, 10));
-        entries.add(new Entry(30f, 11));
-        entries.add(new Entry(62f, 12));
-        entries.add(new Entry(77f, 13));
-        entries.add(new Entry(77f, 14));
-        entries.add(new Entry(77f, 15));
-        entries.add(new Entry(77f, 16));
-        entries.add(new Entry(77f, 17));
-        entries.add(new Entry(77f, 18));
-        entries.add(new Entry(77f, 19));
-        entries.add(new Entry(77f, 20));
-        entries.add(new Entry(77f, 21));
+        for(int i = 0 ; i < 21; i++)
+        {
+            entries.add(new Entry(Float.parseFloat(result2[i]), i));
+        }
 
 
 
