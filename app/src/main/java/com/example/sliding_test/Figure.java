@@ -28,7 +28,14 @@ public class Figure {
             int i=0;
         while(i<8)
         {
-            if(Dbtrain[i] == "error")  break;
+            if(Dbtrain[i] == "error")
+            {
+                for(int j = 0 ; j < 10; j++)
+                {
+                    dataset.add(new VerticalData(R.drawable.side_traindefault, 0 +""));
+                }
+                break;
+            }
 
             int holy = Integer.parseInt(Dbtrain[i]);
 

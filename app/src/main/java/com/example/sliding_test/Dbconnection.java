@@ -21,9 +21,7 @@ public class Dbconnection extends AppCompatActivity {
     TextView sainviewtext = (TextView) findViewById(R.id.mainviewtext);
     public static String[] Subway(String sub){
 
-
-
-        String test = "https://seulgi.me/averge.php";
+        String test = "https://seulgi.me/average.php";
         URLConnector task = new URLConnector(test);
 
         task.start();
