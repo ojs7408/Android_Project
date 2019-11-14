@@ -51,8 +51,6 @@ public class SvsmainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SvsmainActivity.this,MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -112,6 +110,13 @@ public class SvsmainActivity extends AppCompatActivity {
         mVerticalView.setLayoutManager(mLayoutManager);
         mVerticalView2.setLayoutManager(mLayoutManager2);
 
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        String trainNo = intent.getExtras().getString("train");
+        Mainviewtext.setText(trainNo);
+        data1.clear();
+        data1=  Figure.Figure_set(trainNo);
+
         mAdapter = new VerticalAdapter();
         mAdapter.setData(data1);
         mAdapter2 = new VerticalAdapter();
@@ -120,13 +125,6 @@ public class SvsmainActivity extends AppCompatActivity {
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
 
-        Intent intent = getIntent(); /*데이터 수신*/
-        String trainNo = intent.getExtras().getString("train");
-        Mainviewtext.setText(trainNo);
-        data1.clear();
-        data1=  Figure.Figure_set(trainNo);
-        mAdapter.setData(data1);
-        mVerticalView.setAdapter(mAdapter);
 
 
 
