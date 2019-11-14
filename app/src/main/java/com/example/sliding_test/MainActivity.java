@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     LocationManager locationManager;
     TextView Mainviewtext;
     ImageButton btn;
-    String tmp = null, tmp2 = null;
-    String btrainNo="0000";   // 기차 번호
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         lm.requestLocationUpdates("network", 0, 0, locationListener);
-        //network 끝
-        //DB 테스트
-        //String[] test1 = Dbconnection.Subway("0668");
-       // System.out.println(test1[1]);
-        //System.out.println(Dbconnection.Subway("btrainNo"));
-        //DB 테스트 끝
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,24 +64,31 @@ public class MainActivity extends AppCompatActivity {
                     intent.addCategory(Intent.CATEGORY_DEFAULT);
                     startActivity(intent);
                 }
+                while (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                        break;
+                }
                 LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
                 if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 lm.requestLocationUpdates("network", 0, 0, locationListener);
-                Toast.makeText(MainActivity.this, "새로고침 완료.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "새로고침 중입니다...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent (MainActivity.this,SvsmainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
-                Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
-                mVerticalView = (RecyclerView) findViewById(R.id.vertical_list);
-                mVerticalView2=(RecyclerView) findViewById(R.id.vertical_list2);
-                Menubtn = (ImageButton) findViewById(R.id.Menubtn);
-                Menubtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu popup = new PopupMenu(MainActivity.this,Menubtn);
-                        MenuInflater inf = popup.getMenuInflater();
+        Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
+        mVerticalView = (RecyclerView) findViewById(R.id.vertical_list);
+        mVerticalView2=(RecyclerView) findViewById(R.id.vertical_list2);
+        Menubtn = (ImageButton) findViewById(R.id.Menubtn);
+        Menubtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(MainActivity.this,Menubtn);
+                MenuInflater inf = popup.getMenuInflater();
                 inf.inflate(R.menu.mymenu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -122,36 +121,35 @@ public class MainActivity extends AppCompatActivity {
         while (i < MAX_ITEM_COUNT) {
             data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
             data2.add(new VerticalData(R.drawable.top_train0, ""));
-        i++;
-        //
-    }
+            i++;
+            //
+        }
 
 
-    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-    mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-    mLayoutManager2 = new LinearLayoutManager(this);
+        mLayoutManager2 = new LinearLayoutManager(this);
         mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         mVerticalView.setLayoutManager(mLayoutManager);
         mVerticalView2.setLayoutManager(mLayoutManager2);
-
-    mAdapter = new VerticalAdapter();
+        Intent intent = getIntent(); /*데이터 수신*/
+        String trainNo = intent.getExtras().getString("train");
+        data1.clear();
+        data1=  Figure.Figure_set(trainNo);
+        mAdapter = new VerticalAdapter();
         mAdapter.setData(data1);
-    mAdapter2 = new VerticalAdapter();
+        mAdapter2 = new VerticalAdapter();
         mAdapter2.setData(data2);
 
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
 
-        data1.clear();
-        data1=  Figure.Figure_set(btrainNo);
-        mAdapter.setData(data1);
-        mVerticalView.setAdapter(mAdapter);
 
 
 
-}
+    }
 
     @Override
     public void onBackPressed() {
@@ -177,13 +175,18 @@ public class MainActivity extends AppCompatActivity {
             lastKnownLocation = location;
             double longitude=lastKnownLocation.getLongitude();
             double latitude=lastKnownLocation.getLatitude();
-            tmp = Double.toString(longitude);
-            tmp2 = Double.toString(latitude);
+            String tmp = Double.toString(longitude);
+            String tmp2 = Double.toString(latitude);
             Api_adrss api_adrss=new Api_adrss();                        //API 클래스 생성
-            btrainNo = api_adrss.adrss(tmp, tmp2);
+            String btrainNo = api_adrss.adrss(tmp, tmp2);
             Mainviewtext.setText(btrainNo);           //API 받아온 부분
             // Stop the update to prevent changing the location.
             lm.removeUpdates(this);
+            Intent intent = new Intent (MainActivity.this,SvsmainActivity.class);
+            intent.putExtra("train",btrainNo);
+            finish();
+            startActivity(intent);
+
         }
         @Override
         public void onProviderDisabled(String provider) {}
@@ -195,7 +198,5 @@ public class MainActivity extends AppCompatActivity {
         public void onStatusChanged(String provider, int status, Bundle extras) {}
 
     };
-
-
 }
 

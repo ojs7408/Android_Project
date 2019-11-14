@@ -37,10 +37,7 @@ public class SvsmainActivity extends AppCompatActivity {
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     public int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
     LocationManager locationManager;
-    TextView Mainviewtext;
     ImageButton btn;
-    String tmp = null, tmp2 = null;
-    String btrainNo;   // 기차 번호
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +48,28 @@ public class SvsmainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
+                if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    //GPS 설정화면으로 이동
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    intent.addCategory(Intent.CATEGORY_DEFAULT);
+                    startActivity(intent);
+                }
+                while (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        break;
+                    }
+                }
+
+                Toast.makeText(SvsmainActivity.this, "새로고침 중입니다...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent (SvsmainActivity.this,MainActivity.class);
+                intent.putExtra("train","0000");
+                startActivity(intent);
                 finish();
             }
         });
 
-        Mainviewtext = (TextView) findViewById(R.id.svsmainviewtext);
+        TextView Mainviewtext = (TextView) findViewById(R.id.svsmainviewtext);
         mVerticalView = (RecyclerView) findViewById(R.id.svsvertical_list);
         mVerticalView2=(RecyclerView) findViewById(R.id.svsvertical_list2);
         Menubtn = (ImageButton) findViewById(R.id.svsMenubtn);
@@ -84,7 +98,7 @@ public class SvsmainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (SvsmainActivity.this,Popupmain.class);
-                intent.putExtra("name","1호선");
+                intent.putExtra("line","1호선");
                 startActivityForResult(intent, 1);
             }
         });
@@ -127,6 +141,24 @@ public class SvsmainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis(); // 현재 시각과 날짜와의 차이를 long으로 표현
+        long intervalTime = tempTime - backPressedTime; // 위에 선언된 tempTime - Main문 처음에 있던 backPressedTime과의 차이
+
+        if(0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(this, "이전버튼을 한번 더 누르시면 하철2가 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
