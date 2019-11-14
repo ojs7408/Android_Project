@@ -14,7 +14,7 @@
         android:layout_height="0px"
         android:background="@drawable/top_layout_border"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="0.8">
 
 
         <ImageButton
@@ -50,21 +50,12 @@
     </LinearLayout>
 
 
-
-    <Spinner
-        android:id="@+id/spinnerDrop"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_above="@+id/chart"
-        android:layout_weight="4" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -72,21 +63,29 @@
             android:id="@+id/Dateset"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="4"
-            android:textSize="20dp"
-            android:text="0000-00-00"/>
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="0000-00-00"
+            android:textSize="17dp"
+            android:textColor="#000000"/>
+
+        <Spinner
+            android:id="@+id/spinnerDrop"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:layout_above="@+id/chart"/>
 
         <Button
-            android:id="@+id/Datebtn"
+            android:id="@+id/Searchbtn"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:background="@drawable/border_gray"
-            android:text="날짜 변경"
+            android:text="조회하기"
             android:textSize="14dp"
-            android:textColor="#808080"/>
+            android:textColor="#000000"/>
 
 
     </LinearLayout>
@@ -98,12 +97,12 @@
         android:layout_height="0px"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="4.5"/>
+        android:layout_weight="8"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="0.8">
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="match_parent"

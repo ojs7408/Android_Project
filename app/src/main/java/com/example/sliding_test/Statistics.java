@@ -3,7 +3,6 @@ package com.example.sliding_test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,17 +23,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.XAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.mikhaellopez.lazydatepicker.LazyDatePicker;
 
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 //통계정보에 대한 Activity
 public class Statistics  extends AppCompatActivity {
@@ -42,7 +35,8 @@ public class Statistics  extends AppCompatActivity {
 
     ImageButton Menubtn;
     TextView Dateset;
-    Button Datebtn;
+    Button Searchbtn;
+    String time;
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
@@ -69,7 +63,8 @@ public class Statistics  extends AppCompatActivity {
             {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
                 StaristicDB staristicDB =new StaristicDB();
-                staristicDB.staristicdb( parent.getItemAtPosition(position).toString() );
+                String lol= ( parent.getItemAtPosition(position).toString());
+                System.out.println(time);
                 Toast.makeText(Statistics.this, "아이템 선택시.", Toast.LENGTH_SHORT).show();
             }
 
@@ -79,7 +74,7 @@ public class Statistics  extends AppCompatActivity {
             }
         });
 
-        Datebtn = (Button)findViewById(R.id.Datebtn);
+        Searchbtn = (Button)findViewById(R.id.Searchbtn);
         Dateset = (TextView)findViewById(R.id.Dateset);
         final Calendar cal = Calendar.getInstance();
         final int Today_year = cal.get(Calendar.YEAR);
@@ -89,7 +84,7 @@ public class Statistics  extends AppCompatActivity {
         Dateset.setText(Today_year+"-"+Today_month+"-"+Today_day+"");
 
 
-        Datebtn.setOnClickListener(new View.OnClickListener() {
+        Dateset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -98,12 +93,23 @@ public class Statistics  extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month+=1;
                         Dateset.setText(year+"-"+month+"-"+dayOfMonth+"");
+                        String years =Integer.toString(year);
+                        String months =Integer.toString(month);
+                        String dayOfMonths =Integer.toString(dayOfMonth);
+                        time=(years+months+dayOfMonths);
                         Toast.makeText(Statistics.this,year+"-"+month+"-"+dayOfMonth+"",Toast.LENGTH_SHORT).show();
                     }
                 },Today_year,Today_month-1,Today_day);
 
                 dialog.show();
 
+
+            }
+        });
+
+        Searchbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -218,3 +224,4 @@ public class Statistics  extends AppCompatActivity {
     }
 
 }
+
