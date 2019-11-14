@@ -147,13 +147,14 @@ public class Popupmain extends Activity  {
         adapter = new ListViewAdapter() ;
         listview = (ListView) findViewById(R.id.popuplist);
         listview.setAdapter(adapter);
-        for(int i=0;i<list1.length;i++) {
+        adapter.addItem(list1[0], list2[0],list4[0],list3[0]);
+        for(int i=1;i<list1.length;i++) {
             if( list4[i].equals(tmp)) {
-                adapter.addItem(list1[i], list2[i],"상행",list3[i]);
+                adapter.addItem(list1[i], list2[i],"하행",list3[i]);
             }
             else {
                 System.out.println(list4[i]);
-                adapter.addItem(list1[i], list2[i],"하행",list3[i]);
+                adapter.addItem(list1[i], list2[i],"상행",list3[i]);
             }
         }
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
