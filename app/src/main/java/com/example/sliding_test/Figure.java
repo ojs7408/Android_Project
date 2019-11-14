@@ -17,8 +17,6 @@ public class Figure {
 
         public static ArrayList<VerticalData> Figure_set(String btrainNo)
         {
-            //String btrainNo = btrainNo;
-            btrainNo="0668";
 
             System.out.println(btrainNo);
             String[] DDD = new String[] {"5","15","25","35","45","55","65","75"};

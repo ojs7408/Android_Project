@@ -4,45 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/slide"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:background="@drawable/top_layout_border"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:background="@drawable/top_layout_border">
 
         <ImageButton
             android:id="@+id/Menubtn"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:adjustViewBounds="true"
-            android:background="#7BD6F8"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="#7BD6F8"
             app:srcCompat="@drawable/ic_menu64"/>
 
         <TextView
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:fontFamily="@font/nanumbarungothicbold"
+            android:layout_weight="5"
             android:gravity="center"
+            android:fontFamily="@font/nanumbarungothicbold"
             android:text="지하철 정보"
             android:textColor="#000000"
-            android:textSize="25dp"
-            android:layout_weight="5"/>
+            android:textSize="25dp"/>
 
         <ImageButton
             android:id="@+id/btn"
             android:layout_width="0px"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="#7BD6F8"
-            android:src="@drawable/replayarrow32"
-            android:layout_weight="1" />
+            android:src="@drawable/replayarrow32" />
 
     </LinearLayout>
 
