@@ -17,10 +17,13 @@ import java.sql.PreparedStatement;
 
 public class Dbconnection extends AppCompatActivity {
 
+
+    TextView sainviewtext = (TextView) findViewById(R.id.mainviewtext);
     public static String[] Subway(String sub){
 
 
-        String test = "https://seulgi.me/average.php";
+
+        String test = "https://seulgi.me/averge.php";
         URLConnector task = new URLConnector(test);
 
         task.start();
@@ -51,10 +54,9 @@ public class Dbconnection extends AppCompatActivity {
             }
             return result;
         } catch (java.lang.StringIndexOutOfBoundsException e) {
-            //미처리 데이터
+            String[] error = {"error"};
+            return error;
         }
-
-        return null;
     }
 
     public static String UseTable(String sub){

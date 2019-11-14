@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Figure {
     //DB에서 String 묶어서 올 예정
 
+
         private String btrainNo;
 /*
     public Figure(String btrainNo){
@@ -27,6 +28,8 @@ public class Figure {
             int i=0;
         while(i<8)
         {
+            if(Dbtrain[i] == "error")  break;
+
             int holy = Integer.parseInt(Dbtrain[i]);
 
             if(holy>=0 && holy<=10) {dataset.add(new VerticalData(R.drawable.side_train0, holy +""));}
