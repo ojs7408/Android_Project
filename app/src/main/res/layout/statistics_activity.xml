@@ -55,29 +55,38 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_above="@+id/chart"
-        android:layout_weight="2.25">
+        android:layout_weight="4">
     </androidx.appcompat.widget.AppCompatSpinner>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.5"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/Dateset"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="4"
+            android:textSize="20dp"
             android:text="0000-00-00"/>
 
         <Button
             android:id="@+id/Datebtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:text="날짜 변경"/>
-
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_gray"
+            android:text="날짜 변경"
+            android:textSize="14dp"
+            android:textColor="#808080"/>
 
 
     </LinearLayout>
@@ -87,7 +96,9 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="4"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="4.5"/>
 
     <LinearLayout
         android:layout_width="match_parent"

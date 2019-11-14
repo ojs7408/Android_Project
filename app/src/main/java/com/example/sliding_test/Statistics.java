@@ -16,10 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.XAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.mikhaellopez.lazydatepicker.LazyDatePicker;
 
 
@@ -137,28 +141,54 @@ public class Statistics  extends AppCompatActivity {
         entries.add(new Entry(5f, 7));
         entries.add(new Entry(3f, 8));
         entries.add(new Entry(7f, 10));
-        entries.add(new Entry(9f, 11));
+        entries.add(new Entry(30f, 11));
+        entries.add(new Entry(62f, 12));
+        entries.add(new Entry(77f, 13));
 
         LineDataSet dataset = new LineDataSet(entries, "# of Calls");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-        labels.add("July");
-        labels.add("August");
-        labels.add("September");
-        labels.add("October");
-        labels.add("November");
-        labels.add("December");
+        labels.add("5시");
+        labels.add("6시");
+        labels.add("7시");
+        labels.add("8시");
+        labels.add("9시");
+        labels.add("10시");
+        labels.add("11시");
+        labels.add("12시");
+        labels.add("13시");
+        labels.add("14시");
+        labels.add("15시");
+        labels.add("16시");
+        labels.add("17시");
+        labels.add("18시");
+        labels.add("19시");
+        labels.add("20시");
+        labels.add("21시");
+        labels.add("22시");
+        labels.add("23시");
+        labels.add("00시");
+        labels.add("01시");
 
         LineData data = new LineData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-        /*dataset.setDrawCubic(true); //선 둥글게 만들기
-        dataset.setDrawFilled(true); //그래프 밑부분 색칠*/
+
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setLabelsToSkip(3);
+
+        YAxis yAxisRight = lineChart.getAxisRight(); //그래프 오른쪽 설정
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+        YAxis yAxisLeft = lineChart.getAxisLeft();
+        yAxisLeft.setAxisMaxValue(100);
+        yAxisLeft.setAxisMinValue(0);
+        yAxisLeft.setLabelCount(11,true);
+        yAxisLeft.setStartAtZero(true);
+
+
 
         lineChart.setData(data);
         lineChart.animateY(5000);
