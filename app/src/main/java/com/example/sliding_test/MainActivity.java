@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     TextView Mainviewtext;
     ImageButton btn;
     String tmp = null, tmp2 = null;
-    String btrainNo;   // 기차 번호
+    String btrainNo="0000";   // 기차 번호
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
