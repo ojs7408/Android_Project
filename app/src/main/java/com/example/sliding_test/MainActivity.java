@@ -143,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
 
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
-
+/*
         data1.clear();
        // data1=  Figure.Figure_set(btrainNo);
         mAdapter.setData(data1);
         mVerticalView.setAdapter(mAdapter);
 
-
+*/
 }
 
     @Override
