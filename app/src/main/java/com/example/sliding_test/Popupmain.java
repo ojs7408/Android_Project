@@ -17,18 +17,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 public class Popupmain extends Activity  {
-    ImageButton button1 ,buttontest;
+
     String[] list3;
     String tmp ="1";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.popup_activity);
-        button1=(ImageButton)findViewById(R.id.stayline1);
-        buttontest=(ImageButton)findViewById(R.id.stayline10);
+        Button button1= findViewById(R.id.stayline1);
+        Button button2=findViewById(R.id.stayline2);
+        Button button3=findViewById(R.id.stayline3);
+        Button button4=findViewById(R.id.stayline4);
+        Button button5=findViewById(R.id.stayline5);
+        Button button6=findViewById(R.id.stayline6);
+        Button button7=findViewById(R.id.stayline7);
+        Button button8=findViewById(R.id.stayline8);
+        Button button9=findViewById(R.id.stayline9);
+        Button buttontest=findViewById(R.id.stayline10);
         button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","1호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (Popupmain.this,Popupmain.class);
@@ -37,6 +53,70 @@ public class Popupmain extends Activity  {
                 finish();
             }
         });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","3호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","4호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","5호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","6호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","7호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","8호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (Popupmain.this,Popupmain.class);
+                intent.putExtra("line","9호선");
+                startActivityForResult(intent, 1);
+                finish();
+            }
+        });
+
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
