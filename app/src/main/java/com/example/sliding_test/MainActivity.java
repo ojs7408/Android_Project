@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data1.add(new VerticalData(R.drawable.side_traindefault_test, i+1 +""));
-            data2.add(new VerticalData(R.drawable.top_train0_test, ""));
+            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
+            data2.add(new VerticalData(R.drawable.top_train0, ""));
         i++;
         //
     }
@@ -143,13 +143,12 @@ public class MainActivity extends AppCompatActivity {
 
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
-/*
+
         data1.clear();
-       // data1=  Figure.Figure_set(btrainNo);
+        data1=  Figure.Figure_set(btrainNo);
         mAdapter.setData(data1);
         mVerticalView.setAdapter(mAdapter);
 
-*/
 }
 
     @Override
