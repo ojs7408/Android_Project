@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import static androidx.core.content.PermissionChecker.PERMISSION_DENIED;
 
 
 public class Loading extends AppCompatActivity {
@@ -24,22 +27,35 @@ public class Loading extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_activity);
 
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(Loading.this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST);
-
-        Toast.makeText(this, "화면을 클릭해주세요", Toast.LENGTH_LONG).show();
-        imageView=(ImageView)findViewById(R.id.loading);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent intent = new Intent(Loading.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }
-            });
+        ExampleThread thread = new ExampleThread();
+        thread.start();
     }
+    private class ExampleThread extends Thread {
+        private static final String TAG = "ExampleThread";
+        public ExampleThread() {
 
+        }
+        public void run() {
+
+            int check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);
+            while (check ==PERMISSION_DENIED)
+            {
+                 check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+            System.out.println("111");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(Loading.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+
+        }
+    }
 }
