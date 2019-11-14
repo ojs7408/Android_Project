@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this,Popupmain.class);
-                intent.putExtra("name","1호선");
+                intent.putExtra("line","1호선");
                 startActivityForResult(intent, 1);
             }
         });
@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
         data1=  Figure.Figure_set(btrainNo);
         mAdapter.setData(data1);
         mVerticalView.setAdapter(mAdapter);
+
+
 
 }
 
@@ -196,3 +198,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+

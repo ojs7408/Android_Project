@@ -12,16 +12,29 @@
         android:layout_weight="1">
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:background="@drawable/border_list_activity"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:text="서울 지하철"
+            android:textSize="20dp">
+
+        </Button>
+
+        <Button
             android:id="@+id/stayline1"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1"
             android:layout_row="1"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line1"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 1호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline2"
@@ -30,10 +43,11 @@
             android:layout_weight="1"
             android:layout_row="2"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line2"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 2호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline3"
@@ -42,10 +56,11 @@
             android:layout_weight="1"
             android:layout_row="3"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line3"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 3호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline4"
@@ -54,10 +69,11 @@
             android:layout_weight="1"
             android:layout_row="4"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line4"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 4호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline5"
@@ -66,10 +82,11 @@
             android:layout_weight="1"
             android:layout_row="5"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line5"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 5호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline6"
@@ -78,10 +95,11 @@
             android:layout_weight="1"
             android:layout_row="6"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line6"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 6호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline7"
@@ -90,10 +108,11 @@
             android:layout_weight="1"
             android:layout_row="7"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line7"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 7호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline8"
@@ -102,10 +121,11 @@
             android:layout_weight="1"
             android:layout_row="8"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line8"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 8호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline9"
@@ -114,10 +134,11 @@
             android:layout_weight="1"
             android:layout_row="9"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_line9"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 9호선"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"></Button>
 
         <Button
             android:id="@+id/stayline10"
@@ -126,7 +147,7 @@
             android:layout_weight="1"
             android:layout_row="10"
             android:layout_column="1"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_list_activity"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="TEST"
             android:textSize="20dp"></Button>
@@ -136,9 +157,10 @@
             android:id="@+id/popuplist"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="2.5"
             android:layout_row="0"
-            android:layout_column="1">
+            android:layout_column="1"
+            android:dividerHeight="1dp">
 
         </ListView>
 </LinearLayout>
