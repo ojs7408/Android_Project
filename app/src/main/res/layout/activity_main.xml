@@ -58,9 +58,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
             android:background="@drawable/border"
             android:fontFamily="@font/nanumbarungothicbold"
-            android:gravity="center_horizontal"
             android:text="새로고침을 눌러보세요"
             android:textSize="40dp" />
 
@@ -69,8 +69,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:orientation="vertical"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,8 +124,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/nanumbarungothicbold"
             android:gravity="center"
+            android:fontFamily="@font/nanumbarungothicbold"
             android:text="Hacheol2   ver1.0.     Made by. u_ri_Oh."
             android:textColor="#000000"
             android:textSize="15dp" />
