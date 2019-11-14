@@ -68,7 +68,8 @@ public class Statistics  extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
-                //Toast.makeText(getApplicationContext(), data[position], Toast.LENGTH_SHORT).show();
+                StaristicDB staristicDB =new StaristicDB();
+                staristicDB.staristicdb( parent.getItemAtPosition(position).toString() );
                 Toast.makeText(Statistics.this, "아이템 선택시.", Toast.LENGTH_SHORT).show();
             }
 
