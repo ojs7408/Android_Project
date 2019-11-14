@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.mikhaellopez.lazydatepicker.LazyDatePicker;
 
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,33 +50,33 @@ public class Statistics  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_activity);
-        //test
 
-        //날짜 Define함 min max Date
-        /*
-        Date minDate = LazyDatePicker.stringToDate("01-01-2016", DATE_FORMAT);
-        Date maxDate = LazyDatePicker.stringToDate("12-31-2018", DATE_FORMAT);
+        //온클릭시 테스트하려고 만든 텍스트입니다.
+        final TextView textView = (TextView)findViewById(R.id.textView);
 
-        LazyDatePicker lazyDatePicker = findViewById(R.id.lazyDatePicker);
-        lazyDatePicker.setDateFormat(LazyDatePicker.DateFormat.MM_DD_YYYY);
-        lazyDatePicker.setMinDate(minDate);
-        lazyDatePicker.setMaxDate(maxDate);
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerDrop);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sub_stations, android.R.layout.simple_spinner_item);
+            // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
-        lazyDatePicker.setOnDatePickListener(new LazyDatePicker.OnDatePickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDatePick(Date dateSelected) {
-                //...
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
+                //Toast.makeText(getApplicationContext(), data[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(Statistics.this, "아이템 선택시.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-
-        lazyDatePicker.setOnDateSelectedListener(new LazyDatePicker.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(Boolean dateSelected) {
-                //...
-            }
-        });
-*/
-
 
         Datebtn = (Button)findViewById(R.id.Datebtn);
         Dateset = (TextView)findViewById(R.id.Dateset);

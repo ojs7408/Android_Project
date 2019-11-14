@@ -51,12 +51,12 @@
 
 
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <Spinner
+        android:id="@+id/spinnerDrop"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_above="@+id/chart"
-        android:layout_weight="4">
-    </androidx.appcompat.widget.AppCompatSpinner>
+        android:layout_weight="4" />
 
 
     <LinearLayout
@@ -116,6 +116,11 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 
 </LinearLayout>
