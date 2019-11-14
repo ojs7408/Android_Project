@@ -160,7 +160,11 @@ public class Popupmain extends Activity  {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(list3[position]);
+
+                Intent intent = new Intent (Popupmain.this,SvsmainActivity.class);
+                intent.putExtra("train",list3[position]);
+                startActivity(intent);
+                finish();
             }
         });
 

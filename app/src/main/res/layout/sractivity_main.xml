@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/svsslide"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:background="@drawable/top_layout_border"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/svsMenubtn"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:background="#7BD6F8"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_menu64"/>
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:gravity="center"
+            android:text="지하철 정보"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:layout_weight="5"/>
+
+        <ImageButton
+            android:id="@+id/svsbtn"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:background="#7BD6F8"
+            android:src="@drawable/replayarrow32"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="3">
+
+        <TextView
+            android:id="@+id/svsmainviewtext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:gravity="center_horizontal"
+            android:text="새로고침을 눌러보세요"
+            android:textSize="40dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:text="쾌적도"
+            android:textSize="25dp"
+            android:textColor="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/svsvertical_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:text="노약자석"
+            android:textSize="25dp"
+            android:textColor="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/svsvertical_list2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.8">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nanumbarungothicbold"
+            android:gravity="center"
+            android:text="Hacheol2   ver1.0.     Made by. u_ri_Oh."
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

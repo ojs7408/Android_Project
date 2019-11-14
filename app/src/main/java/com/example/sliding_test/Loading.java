@@ -45,7 +45,6 @@ public class Loading extends AppCompatActivity {
             {
                  check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);
             }
-            System.out.println("111");
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
