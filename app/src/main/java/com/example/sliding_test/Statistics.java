@@ -36,7 +36,7 @@ public class Statistics  extends AppCompatActivity {
     ImageButton Menubtn;
     TextView Dateset;
     Button Searchbtn;
-    String time;
+    String time,lol;
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
@@ -63,8 +63,7 @@ public class Statistics  extends AppCompatActivity {
             {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
                 StaristicDB staristicDB =new StaristicDB();
-                String lol= ( parent.getItemAtPosition(position).toString());
-                System.out.println(time);
+                 lol= ( parent.getItemAtPosition(position).toString());
                 Toast.makeText(Statistics.this, "아이템 선택시.", Toast.LENGTH_SHORT).show();
             }
 
@@ -110,6 +109,10 @@ public class Statistics  extends AppCompatActivity {
         Searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StaristicDB staristicDB =new StaristicDB();
+                String dbretrun =staristicDB.staristicdb(lol,time);
+System.out.println(time);
+                System.out.println(dbretrun);
 
             }
         });
@@ -156,6 +159,14 @@ public class Statistics  extends AppCompatActivity {
         entries.add(new Entry(30f, 11));
         entries.add(new Entry(62f, 12));
         entries.add(new Entry(77f, 13));
+        entries.add(new Entry(77f, 14));
+        entries.add(new Entry(77f, 15));
+        entries.add(new Entry(77f, 16));
+        entries.add(new Entry(77f, 17));
+        entries.add(new Entry(77f, 18));
+        entries.add(new Entry(77f, 19));
+        entries.add(new Entry(77f, 20));
+        entries.add(new Entry(77f, 21));
 
 
 

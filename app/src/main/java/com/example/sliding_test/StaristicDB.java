@@ -50,7 +50,7 @@ public class StaristicDB {
             String searchKeyword1 = params[0];
             String searchKeyword2 = params[1];
             String serverURL = "https://seulgi.me/testfile.php";
-            String postParameters = "subway_name=" + searchKeyword1 +"time" + searchKeyword2;
+            String postParameters = "subway_name=" + searchKeyword1 +"&time=" + searchKeyword2;
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
