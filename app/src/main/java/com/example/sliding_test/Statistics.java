@@ -65,7 +65,7 @@ public class Statistics  extends AppCompatActivity {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
                 StaristicDB staristicDB =new StaristicDB();
                  lol= ( parent.getItemAtPosition(position).toString());
-                Toast.makeText(Statistics.this, "아이템 선택시.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Statistics.this, parent.getItemAtPosition(position)+" 선택", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -118,14 +118,65 @@ public class Statistics  extends AppCompatActivity {
                 String target = "\"h_05\":";
                 int target_num1 = str1.indexOf(target);
 
-                str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("            }")+target_num1));
-                result1 = str2.split(",                ");
+                try{
+                    str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("            }")+target_num1));
+                    result1 = str2.split(",                ");
 
-                for(int i = 0; i < 21; i++)
-                {
-                    int target_num2 = result1[i].indexOf("\": \"")+4;
-                    result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
+                    for(int i = 0; i < 21; i++)
+                    {
+                        int target_num2 = result1[i].indexOf("\": \"")+4;
+                        result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
+                    }
+
+                    ArrayList<Entry> entries = new ArrayList<>();
+                    for(int i = 0 ; i < 21; i++)
+                    {
+                        entries.add(new Entry(Float.parseFloat(result2[i]), i));
+                    }
+
+                    LineChart lineChart = (LineChart) findViewById(R.id.chart);
+
+                    LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+
+                    ArrayList<String> labels = new ArrayList<>();
+                    int i=5;
+                    while (i<24) {
+                        labels.add(i + "시");
+                        i++;
+                    }
+                    labels.add("00시");
+                    labels.add("01시");
+
+
+
+                    LineData data = new LineData(labels, dataset);
+                    dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
+
+                    XAxis xAxis = lineChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setLabelsToSkip(3);
+
+                    YAxis yAxisRight = lineChart.getAxisRight(); //그래프 오른쪽 설정
+                    yAxisRight.setDrawLabels(false);
+                    yAxisRight.setDrawAxisLine(false);
+                    yAxisRight.setDrawGridLines(false);
+
+                    YAxis yAxisLeft = lineChart.getAxisLeft();
+                    yAxisLeft.setAxisMaxValue(100);
+                    yAxisLeft.setAxisMinValue(0);
+                    yAxisLeft.setLabelCount(11,true);
+                    yAxisLeft.setStartAtZero(true);
+
+
+
+                    lineChart.setData(data);
+                    lineChart.animateY(5000);
+
+                } catch(StringIndexOutOfBoundsException e) {
+                    Toast.makeText(getApplicationContext(),"정보가 없습니다.", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
@@ -133,8 +184,6 @@ public class Statistics  extends AppCompatActivity {
 
 
 
-
-        LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
         Menubtn = (ImageButton) findViewById(R.id.Menubtn);
         Menubtn.setOnClickListener(new View.OnClickListener() {
@@ -157,49 +206,7 @@ public class Statistics  extends AppCompatActivity {
             }
         });
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        for(int i = 0 ; i < 21; i++)
-        {
-            entries.add(new Entry(Float.parseFloat(result2[i]), i));
-        }
 
-
-
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
-
-        ArrayList<String> labels = new ArrayList<>();
-        int i=5;
-        while (i<24) {
-            labels.add(i + "시");
-            i++;
-        }
-        labels.add("00시");
-        labels.add("01시");
-
-
-
-        LineData data = new LineData(labels, dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setLabelsToSkip(3);
-
-        YAxis yAxisRight = lineChart.getAxisRight(); //그래프 오른쪽 설정
-        yAxisRight.setDrawLabels(false);
-        yAxisRight.setDrawAxisLine(false);
-        yAxisRight.setDrawGridLines(false);
-
-        YAxis yAxisLeft = lineChart.getAxisLeft();
-        yAxisLeft.setAxisMaxValue(100);
-        yAxisLeft.setAxisMinValue(0);
-        yAxisLeft.setLabelCount(11,true);
-        yAxisLeft.setStartAtZero(true);
-
-
-
-        lineChart.setData(data);
-        lineChart.animateY(5000);
 
     }
     @Override

@@ -50,7 +50,7 @@ public class Loading extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Intent intent = new Intent(Loading.this, Londs.class);
+            Intent intent = new Intent(Loading.this, MainActivity.class);
             intent.putExtra("train","0000");
             startActivity(intent);
             finish();
