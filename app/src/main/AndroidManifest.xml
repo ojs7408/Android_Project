@@ -15,6 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
         </activity>
+        <activity android:name=".SvsmainActivity"></activity>
         <activity android:name=".Statistics"></activity>
         <activity android:name=".Loading">
             <intent-filter>
