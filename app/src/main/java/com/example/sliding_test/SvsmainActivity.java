@@ -1,11 +1,7 @@
 package com.example.sliding_test;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +27,7 @@ public class SvsmainActivity extends AppCompatActivity {
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
     private RecyclerView mVerticalView, mVerticalView2;
-    private VerticalAdapter mAdapter, mAdapter2 ;
+    private HorizontalAdapter mAdapter, mAdapter2 ;
     private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
@@ -103,13 +99,13 @@ public class SvsmainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<VerticalData> data1 = new ArrayList<>();
-        ArrayList<VerticalData> data2 = new ArrayList<>();
+        ArrayList<HorizontalData> data1 = new ArrayList<>();
+        ArrayList<HorizontalData> data2 = new ArrayList<>();
 
         int i = 0;
         while (i < MAX_ITEM_COUNT) {
-            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
-            data2.add(new VerticalData(R.drawable.top_train0, ""));
+            data1.add(new HorizontalData(R.drawable.side_traindefault, i+1 +""));
+            data2.add(new HorizontalData(R.drawable.top_train0, ""));
             i++;
             //
         }
@@ -131,9 +127,9 @@ public class SvsmainActivity extends AppCompatActivity {
         data1.clear();
         data1=  Figure.Figure_set(trainNo);
 
-        mAdapter = new VerticalAdapter();
+        mAdapter = new HorizontalAdapter();
         mAdapter.setData(data1);
-        mAdapter2 = new VerticalAdapter();
+        mAdapter2 = new HorizontalAdapter();
         mAdapter2.setData(data2);
 
         mVerticalView.setAdapter(mAdapter);

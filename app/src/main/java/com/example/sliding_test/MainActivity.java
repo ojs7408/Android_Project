@@ -28,12 +28,12 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //현재 지하철 정보 화면 클래스
 
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
     private RecyclerView mVerticalView, mVerticalView2;
-    private VerticalAdapter mAdapter, mAdapter2;
+    private HorizontalAdapter mAdapter, mAdapter2;
     private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
-        mVerticalView = (RecyclerView) findViewById(R.id.vertical_list);
-        mVerticalView2=(RecyclerView) findViewById(R.id.vertical_list2);
+        mVerticalView = (RecyclerView) findViewById(R.id.Horizontal_Top_List);
+        mVerticalView2=(RecyclerView) findViewById(R.id.Horizontal_Bottom_List);
         Menubtn = (ImageButton) findViewById(R.id.Menubtn);
         Menubtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,13 +114,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<VerticalData> data1 = new ArrayList<>();
-        ArrayList<VerticalData> data2 = new ArrayList<>();
+        ArrayList<HorizontalData> data1 = new ArrayList<>(); //포화도 View를 위한 자료구조 변수 선언
+        ArrayList<HorizontalData> data2 = new ArrayList<>(); //노약자석 View를 위한 자료구조 변수 선언
 
-        int i = 0;
+        int i = 0; // while문을 위한 index
+
+        //해당 지하철 칸 수 만큼 지하철 이미지를 자료구조 변수에 넣어줌
         while (i < MAX_ITEM_COUNT) {
-            data1.add(new VerticalData(R.drawable.side_traindefault, i+1 +""));
-            data2.add(new VerticalData(R.drawable.top_train0, ""));
+            data1.add(new HorizontalData(R.drawable.side_traindefault, i+1 +"")); //기본 이미지, 기본 수치
+            data2.add(new HorizontalData(R.drawable.top_train0, "")); //기본 이미지는 넣어주나 수치 x
             i++;
             //
         }
@@ -129,22 +131,22 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL); // 지하철 포화도 이미지를 가로로 배열시키기 위해 LinearLayout Horizontal로 새로 생성
         mLayoutManager2 = new LinearLayoutManager(this);
-        mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mVerticalView.setLayoutManager(mLayoutManager);
-        mVerticalView2.setLayoutManager(mLayoutManager2);
+        mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL); // 지하철 노약자석 이미지를 가로로 배열시키기 위해 LinearLayout Horizontal로 새로 생성
+        mVerticalView.setLayoutManager(mLayoutManager); //새로 생성한 LinearLayout을 커스텀한 RecycleView에 넣어줌
+        mVerticalView2.setLayoutManager(mLayoutManager2); //새로 생성한 LinearLayout을 커스텀한 RecycleView에 넣어줌
         Intent intent = getIntent(); /*데이터 수신*/
         String trainNo = intent.getExtras().getString("train");
-        data1.clear();
-        data1=  Figure.Figure_set(trainNo);
-        mAdapter = new VerticalAdapter();
-        mAdapter.setData(data1);
-        mAdapter2 = new VerticalAdapter();
-        mAdapter2.setData(data2);
+        data1.clear(); //자료구조 변수 초기화
+        data1=  Figure.Figure_set(trainNo); //지하철 번호를 Figure로 보내 해당 지하철의 포화도 수치를 받아옴, 받아오는 형식은 Arraylist<HorizontalData>
+        mAdapter = new HorizontalAdapter();
+        mAdapter.setData(data1); //포화도 이미지, 수치 Reset
+        mAdapter2 = new HorizontalAdapter();
+        mAdapter2.setData(data2); //노약자석 사용유무 이미지 Reset
 
-        mVerticalView.setAdapter(mAdapter);
-        mVerticalView2.setAdapter(mAdapter2);
+        mVerticalView.setAdapter(mAdapter); //포화도 이미지,수치를 적용한 View를 화면에 띄움
+        mVerticalView2.setAdapter(mAdapter2); //노약자석 사용유무 이미지를 적용한 View를 화면에 띄움
 
 
 
