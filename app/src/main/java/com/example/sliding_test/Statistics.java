@@ -81,6 +81,7 @@ public class Statistics  extends AppCompatActivity {
         final int Today_month = cal.get(Calendar.MONTH)+1;
         final int Today_day = cal.get(Calendar.DAY_OF_MONTH);
 
+        time=Integer.toString(Today_year)+Integer.toString(Today_month)+Integer.toString(Today_day);
         Dateset.setText(Today_year+"-"+Today_month+"-"+Today_day+"");
 
 
