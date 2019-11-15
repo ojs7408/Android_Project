@@ -83,7 +83,7 @@
             android:textColor="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vertical_list"
+            android:id="@+id/Horizontal_Top_List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -108,7 +108,7 @@
             android:textColor="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vertical_list2"
+            android:id="@+id/Horizontal_Bottom_List"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
