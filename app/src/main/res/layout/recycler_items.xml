@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFFFF"
-            android:src="@drawable/side_traindefault"/>
+            android:src="@drawable/side_traindefault"/> // 쾌적도 지하철 이미지
 
         <TextView
             android:id="@+id/Horizontal_description"
@@ -28,7 +28,7 @@
             android:layout_alignTop="@+id/train_icon"
             android:gravity="center"
             android:text="0"
-            android:textSize="30dp"/>
+            android:textSize="30dp"/> // 쾌적도 수치 텍스트
 
     </RelativeLayout>
 

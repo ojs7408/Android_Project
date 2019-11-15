@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"> // 화면 상단 배경
     <item android:bottom="1dp" android:left="-2dp" android:right="-2dp" android:top="-2dp">
         <shape android:shape="rectangle" >
             <solid android:color="#7BD6F8" />

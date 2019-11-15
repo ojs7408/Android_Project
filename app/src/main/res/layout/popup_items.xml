@@ -18,7 +18,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#000000"></TextView>
+            android:textColor="#000000"></TextView> // 리스트 중 출발역 텍스트
 
         <TextView
             android:id="@+id/itemss2"
@@ -28,7 +28,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#000000"></TextView>
+            android:textColor="#000000"></TextView> // 리스트 중 도착역 텍스트
 
         <ImageView
             android:id="@+id/itemss3"
@@ -43,7 +43,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:gravity="center"
             android:textSize="20dp"
-            android:textColor="#000000"></TextView>
+            android:textColor="#000000"></TextView> // 리스트 중 상행하행 텍스트
 
     </LinearLayout>
 

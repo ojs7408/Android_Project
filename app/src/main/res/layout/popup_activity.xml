@@ -17,7 +17,7 @@
             android:background="@drawable/border_list_activity"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 지하철"
-            android:textSize="20dp">
+            android:textSize="20dp"> // 목록명
 
         </Button>
 
@@ -29,7 +29,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 1호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 1호선 목록 버튼
 
         <Button
             android:id="@+id/stayline2"
@@ -39,7 +39,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 2호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 2호선 목록 버튼
 
         <Button
             android:id="@+id/stayline3"
@@ -49,7 +49,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 3호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 3호선 목록 버튼
 
         <Button
             android:id="@+id/stayline4"
@@ -59,7 +59,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 4호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 4호선 목록 버튼
 
         <Button
             android:id="@+id/stayline5"
@@ -69,7 +69,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 5호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 5호선 목록 버튼
 
         <Button
             android:id="@+id/stayline6"
@@ -79,7 +79,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 6호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 6호선 목록 버튼
 
         <Button
             android:id="@+id/stayline7"
@@ -89,7 +89,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 7호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 7호선 목록 버튼
 
         <Button
             android:id="@+id/stayline8"
@@ -99,7 +99,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 8호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 8호선 목록 버튼
 
         <Button
             android:id="@+id/stayline9"
@@ -109,7 +109,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="서울 9호선"
             android:textSize="20dp"
-            android:textColor="@color/colorWhite"></Button>
+            android:textColor="@color/colorWhite"></Button> // 9호선 목록 버튼
 
         <Button
             android:id="@+id/stayline10"
@@ -118,7 +118,7 @@
             android:background="@drawable/border_list_activity"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="TEST"
-            android:textSize="20dp"></Button>
+            android:textSize="20dp"></Button> // 테스트 목록 버튼
 
     </LinearLayout>
         <ListView
@@ -126,7 +126,7 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="2.5"
-            android:dividerHeight="1dp">
+            android:dividerHeight="1dp"> // 목록별 지하철 리스트
 
         </ListView>
 </LinearLayout>

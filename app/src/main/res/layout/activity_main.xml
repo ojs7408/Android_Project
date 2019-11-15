@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#7BD6F8"
-            app:srcCompat="@drawable/ic_menu64"/>
+            app:srcCompat="@drawable/ic_menu64"/> // 목록버튼
 
         <TextView
             android:layout_width="0px"
@@ -33,7 +33,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="지하철 정보"
             android:textColor="#000000"
-            android:textSize="25dp"/>
+            android:textSize="25dp"/> // 지하철 정보 타이틀
 
         <ImageButton
             android:id="@+id/btn"
@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#7BD6F8"
-            android:src="@drawable/replayarrow32" />
+            android:src="@drawable/replayarrow32" /> // 새로고침 버튼
 
     </LinearLayout>
 
@@ -62,7 +62,7 @@
             android:background="@drawable/border"
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="새로고침을 눌러보세요"
-            android:textSize="40dp" />
+            android:textSize="40dp" /> // 지하철 선택 창
 
     </LinearLayout>
 
@@ -80,7 +80,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="쾌적도"
             android:textSize="25dp"
-            android:textColor="#000000" />
+            android:textColor="#000000" /> // 쾌적도 타이틀
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Horizontal_Top_List"
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"/> // 지하철 쾌적도 이미지
 
     </LinearLayout>
 
@@ -106,7 +106,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="노약자석"
             android:textSize="25dp"
-            android:textColor="#000000" />
+            android:textColor="#000000" /> // 노약자석 타이틀
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Horizontal_Bottom_List"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp" /> // 노약자석 유무 이미지
 
     </LinearLayout>
 
@@ -130,7 +130,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="Hacheol2   ver1.0.     Made by. u_ri_Oh."
             android:textColor="#000000"
-            android:textSize="15dp" />
+            android:textSize="15dp" /> // 버전, 개발진 타이틀
 
     </LinearLayout>
 

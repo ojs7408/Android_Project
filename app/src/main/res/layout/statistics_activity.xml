@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#7BD6F8"
-            app:srcCompat="@drawable/ic_menu64"/>
+            app:srcCompat="@drawable/ic_menu64"/> // 메뉴 버튼
 
         <TextView
             android:layout_width="0px"
@@ -34,7 +34,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="통계 정보"
             android:textSize="25dp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"/> // 통계 정보 타이틀
 
         <ImageButton
             android:id="@+id/btn"
@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#7BD6F8"
-            android:src="@drawable/replayarrow32" />
+            android:src="@drawable/replayarrow32" /> // 새로고침 버튼
 
 
 
@@ -66,13 +66,13 @@
             android:gravity="center"
             android:text="0000-00-00"
             android:textSize="17dp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"/> 날짜 설정 텍스트
 
         <Spinner
             android:id="@+id/spinnerDrop"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"/>
+            android:layout_weight="2.5"/> // 역 설정 스피너
 
         <Button
             android:id="@+id/Searchbtn"
@@ -83,7 +83,7 @@
             android:background="@drawable/border_gray"
             android:text="조회하기"
             android:textSize="14dp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"/> 조회 버튼
 
 
     </LinearLayout>
@@ -95,7 +95,7 @@
         android:layout_height="0px"
         android:layout_weight="8"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"/> // 통계 차트
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,7 +109,7 @@
             android:fontFamily="@font/nanumbarungothicbold"
             android:text="Hacheol2   ver1.0.     Made by. u_ri_Oh."
             android:textSize="15dp"
-            android:textColor="#000000" />
+            android:textColor="#000000" /> // 버전, 개발진 타이틀 텍스트
 
     </LinearLayout>
 

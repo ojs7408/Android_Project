@@ -13,4 +13,5 @@
         android:text="로딩중.."
         android:textSize="50dp"
         android:textColor="#000000"></TextView>
+
 </LinearLayout>
