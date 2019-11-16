@@ -105,16 +105,13 @@ public class Dbconnection extends AppCompatActivity {
         }
 
         String str1 = task.getResult(); // SELECT된 DB값
-        String str2, str3;
-        String target = sub;
+        String str2;
+        String target = ", ";
         int target_num1 = str1.indexOf(target);
-        System.out.println(str1);
 
         try{
             str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
-            int target_num2 = str1.indexOf(", ");
-            str3 = str2.substring(target_num2+2,(str2.substring(target_num2).indexOf("*")+target_num2));
-            String[] result = str3.split(", ");
+            String[] result = str2.split(", ");
 
             for(int i=0; i < result.length; i++)
             {
