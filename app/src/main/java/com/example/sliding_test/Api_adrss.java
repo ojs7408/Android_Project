@@ -91,7 +91,7 @@ public class Api_adrss  {
             String er=" ,통신및위치오류, , , ";
             return er;
         }
-        return index_btrainNo+",/"+index_Current+",/"+index_Arrival+",/"+index_Upline+","+index_line ;
+        return index_btrainNo+","+index_Current+"/,"+index_Arrival+"/,"+index_Upline+"/,"+index_line ;
     }
     public String trains(String lines){
         try {
