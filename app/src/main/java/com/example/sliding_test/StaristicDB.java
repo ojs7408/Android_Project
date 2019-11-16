@@ -1,22 +1,6 @@
 package com.example.sliding_test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
@@ -28,23 +12,29 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class StaristicDB {
-    public String lool ;
-   String staristicdb(String sub,String sub1){
-       GetData task = new GetData();
-       lool=task.doInBackground(sub,sub1);
-    return lool;
-   }
-    public class GetData extends AsyncTask<String, Void, String>{
+
+    public String value ;
+
+    String staristicdb(String sub, String sub1) {
+        GetData task = new GetData();
+        value = task.doInBackground(sub, sub1);
+        return value;
+    } // 통계 값 반환 시켜주기
+
+    public class GetData extends AsyncTask<String, Void, String> {
         String errorString = null;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
+
         @Override
         public void onPostExecute(String result) {
             super.onPostExecute(result);
-            lool = result;
+            value = result;
         }
+
         @Override
         protected String doInBackground(String... params) {
             String searchKeyword1 = params[0];
@@ -54,32 +44,38 @@ public class StaristicDB {
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
+                httpURLConnection.setReadTimeout(5000); // 읽는 타임아웃 5초
+                httpURLConnection.setConnectTimeout(5000); // 연결 타임아웃 5초
+                httpURLConnection.setRequestMethod("POST"); // POST 방식
+                httpURLConnection.setDoInput(true); // 받는 기능 on
+                httpURLConnection.connect(); // 연결
+
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.write(postParameters.getBytes("UTF-8")); // 보낸다.
                 outputStream.flush();
                 outputStream.close();
+
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 InputStream inputStream;
                 if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
                 } else {
                     inputStream = httpURLConnection.getErrorStream();
-                }
+                } // 서버 통신 상태 확인
+
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // 받아온다.
                 StringBuilder sb = new StringBuilder();
                 String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
-                }
+                } // 뒤에 붙이기
+
                 bufferedReader.close();
+
                 return sb.toString().trim();
+
             } catch (Exception e) {
                 errorString = e.toString();
                 return null;

@@ -113,7 +113,7 @@ public class Statistics  extends AppCompatActivity {
             public void onClick(View v) {
                 StaristicDB staristicDB =new StaristicDB();
 
-                String str1 = staristicDB.staristicdb(lol,time);
+                String str1 = staristicDB.staristicdb(lol,time); // 차트에 들어갈 통계 값 요청
                 String str2, str3;
                 String[] result1;
                 String target = "\"h_05\":";
@@ -121,19 +121,19 @@ public class Statistics  extends AppCompatActivity {
 
                 try{
                     str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("            }")+target_num1));
-                    result1 = str2.split(",                ");
+                    result1 = str2.split(",                "); // 1차 통계값 자르기
 
                     for(int i = 0; i < 21; i++)
                     {
                         int target_num2 = result1[i].indexOf("\": \"")+4;
                         result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
-                    }
+                    } // 최종 통계값 자르기
 
                     ArrayList<Entry> entries = new ArrayList<>();
                     for(int i = 0 ; i < 21; i++)
                     {
                         entries.add(new Entry(Float.parseFloat(result2[i]), i));
-                    }
+                    } // 차트에 통계값 넣기
 
                     LineChart lineChart = (LineChart) findViewById(R.id.chart);
 

@@ -20,22 +20,22 @@ public class Dbconnection extends AppCompatActivity {
 
     TextView sainviewtext = (TextView) findViewById(R.id.mainviewtext);
 
-    public static String[] Subway(String sub){  //쾌적도 값 10개 가져오기
+    public static String[] Subway(String sub){
 
-        String test = "https://seulgi.me/average.php";
-        URLConnector task = new URLConnector(test);
+        String test = "https://seulgi.me/average.php"; // php 선택
+        URLConnector task = new URLConnector(test); // DB 연결
 
-        task.start();
+        task.start(); // php running
 
         try{
-            task.join();
+            task.join(); // 종료시까지 대기
             System.out.println("waiting... for result");
         }
         catch(InterruptedException e){
 
         }
 
-        String str1 = task.getResult();
+        String str1 = task.getResult(); // SELECT된 DB값
         String str2, str3;
         String target = sub;
         int target_num1 = str1.indexOf(target);
@@ -55,64 +55,28 @@ public class Dbconnection extends AppCompatActivity {
         } catch (java.lang.StringIndexOutOfBoundsException e) {
             String[] error = {"error"};
             return error;
-        }
-    }
+        } // 반환해주기 위한 문자열 자르기
 
-    public static String UseTable(String sub){ //좌석 사용 유무 값 ?개 가져오기
-        String test = "https://seulgi.me/chair.php";
-        URLConnector task = new URLConnector(test);
+    } //쾌적도 값 10개 가져오기
 
-        task.start();
+    public static String UseTable(String sub){
+        String test = "https://seulgi.me/chair.php"; // php 선택
+        URLConnector task = new URLConnector(test); // DB 연결
+
+        task.start(); // php running
 
         try{
-            task.join();
+            task.join(); // 종료시까지 대기
             System.out.println("waiting... for result");
         }
         catch(InterruptedException e){
 
         }
 
-        String result = task.getResult();
+        String result = task.getResult(); // SELECT된 DB값
 
         return result;
-    }
 
-    public static String[] Statics(String sub) { // 2호선 통계정보 21개 (5시~1시), 10개 정거장
-        String test = "https://seulgi.me/line2.php";
-        URLConnector task = new URLConnector(test);
+    } //좌석 사용 유무 값 3개 가져오기
 
-        task.start();
-
-        try{
-            task.join();
-            System.out.println("waiting... for result");
-        }
-        catch(InterruptedException e){
-
-        }
-
-        String str1 = task.getResult();
-        String str2, str3;
-        String target = "sub";
-        int target_num1 = str1.indexOf(target);
-        System.out.println(str1);
-
-        try{
-            str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
-            int target_num2 = str1.indexOf(", ");
-            str3 = str2.substring(target_num2+2,(str2.substring(target_num2).indexOf("*")+target_num2));
-            String[] result = str3.split(", ");
-
-            for(int i=0; i < result.length; i++)
-            {
-                System.out.println(result[i]);
-            }
-
-            return result;
-        } catch (java.lang.StringIndexOutOfBoundsException e) {
-            String[] error = {"error"};
-            return error;
-        }
-    }
-
-}
+} // 받아오는 데이터가 적은 기능에 대한 DB처리
