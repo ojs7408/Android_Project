@@ -1,130 +1,100 @@
 package com.example.sliding_test;
 
-import android.widget.TextView;
+import android.os.AsyncTask;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.io.BufferedReader;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-public class Dbconnection extends AppCompatActivity {
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
+public class Dbconnection {
 
-    TextView sainviewtext = (TextView) findViewById(R.id.mainviewtext);
+    public String value ;
+    String[] result2 = new String[40];
 
-    public static String[] Subway(String sub){
+     String[] Sensor(String sub) {
+        GetData task = new GetData();
+        value = task.doInBackground(sub);// SELECT된 DB값
 
-        String test = "https://seulgi.me/average.php"; // php 선택
-        URLConnector task = new URLConnector(test); // DB 연결
+         String value2, value3;
+         String[] result1;
+         String target = "\"space1\":";
+         int target_num1 = value.indexOf(target);
 
-        task.start(); // php running
+         value2 = value.substring(target_num1,(value.substring(target_num1).indexOf("            }")+target_num1));
+         result1 = value2.split(",                "); // 1차 통계값 자르기
 
-        try{
-            task.join(); // 종료시까지 대기
-            System.out.println("waiting... for result");
+         for(int i = 0; i < 40; i++)
+         {
+             int target_num2 = result1[i].indexOf("\": \"")+4;
+             result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
+         } // 최종 통계값 자르기
+
+        return result2;
+    }
+
+    public class GetData extends AsyncTask<String, Void, String> {
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
-        catch(InterruptedException e){
 
+        @Override
+        public void onPostExecute(String result) {
+            super.onPostExecute(result);
+            value = result;
         }
 
-        String str1 = task.getResult(); // SELECT된 DB값
-        String str2, str3;
-        String target = sub;
-        int target_num1 = str1.indexOf(target);
-        System.out.println(str1);
+        @Override
+        protected String doInBackground(String... params) {
+            String searchKeyword1 = params[0];
+            String serverURL = "https://seulgi.me/sensor.php";
+            String postParameters = "subway_name=" + searchKeyword1;
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setReadTimeout(5000); // 읽는 타임아웃 5초
+                httpURLConnection.setConnectTimeout(5000); // 연결 타임아웃 5초
+                httpURLConnection.setRequestMethod("POST"); // POST 방식
+                httpURLConnection.setDoInput(true); // 받는 기능 on
+                httpURLConnection.connect(); // 연결
 
-        try{
-            str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
-            int target_num2 = str1.indexOf(", ");
-            str3 = str2.substring(target_num2+2,(str2.substring(target_num2).indexOf("*")+target_num2));
-            String[] result = str3.split(", ");
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8")); // 보낸다.
+                outputStream.flush();
+                outputStream.close();
 
-            for(int i=0; i < result.length; i++)
-            {
-                System.out.println(result[i]);
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                } // 서버 통신 상태 확인
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // 받아온다.
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                } // 뒤에 붙이기
+
+                bufferedReader.close();
+
+                return sb.toString().trim();
+
+            } catch (Exception e) {
+                errorString = e.toString();
+                return null;
             }
-
-            return result;
-        } catch (java.lang.StringIndexOutOfBoundsException e) {
-            String[] error = {"error"};
-            return error;
-        } // 반환해주기 위한 문자열 자르기
-
-    } //쾌적도 값 10개 가져오기
-
-    public static String[] UseTable(String sub){
-        String test = "https://seulgi.me/chair.php"; // php 선택
-        URLConnector task = new URLConnector(test); // DB 연결
-
-        task.start(); // php running
-
-        try{
-            task.join(); // 종료시까지 대기
-            System.out.println("waiting... for result");
         }
-        catch(InterruptedException e){
-
-        }
-
-        String str1 = task.getResult(); // SELECT된 DB값
-        String str2, str3;
-        String target = sub;
-        int target_num1 = str1.indexOf(target);
-        System.out.println(str1);
-
-        try{
-            str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
-            int target_num2 = str1.indexOf(", ");
-            str3 = str2.substring(target_num2+2,(str2.substring(target_num2).indexOf("*")+target_num2));
-            String[] result = str3.split(", ");
-
-            for(int i=0; i < result.length; i++)
-            {
-                System.out.println(result[i]);
-            }
-
-            return result;
-        } catch (java.lang.StringIndexOutOfBoundsException e) {
-            String[] error = {"error"};
-            return error;
-
-        } // 반환해주기 위한 문자열 자르기
-
-    } //좌석 사용 유무 값 30개 가져오기
-
-    public static String[] Sensor(String sub){
-        String test = "https://seulgi.me/sensor.php"; // php 선택
-        URLConnector task = new URLConnector(test); // DB 연결
-
-        task.start(); // php running
-
-        try{
-            task.join(); // 종료시까지 대기
-            System.out.println("waiting... for result");
-        }
-        catch(InterruptedException e){
-
-        }
-
-        String str1 = task.getResult(); // SELECT된 DB값
-        String str2;
-        String target = sub;
-        int target_num1 = str1.indexOf(target);
-
-        try{
-            str2 = str1.substring(target_num1+6,(str1.substring(target_num1).indexOf("/")+target_num1));
-            String[] result = str2.split(", ");
-
-            for(int i=0; i < result.length; i++)
-            {
-                System.out.println(result[i]);
-            }
-
-            return result;
-        } catch (java.lang.StringIndexOutOfBoundsException e) {
-            String[] error = {"error"};
-            return error;
-
-        } // 반환해주기 위한 문자열 자르기
-
-    } // DB로 센서 값 가져오기
-
-} // 받아오는 데이터가 적은 기능에 대한 DB처리
+    }
+}

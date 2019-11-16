@@ -18,7 +18,8 @@ public class Figure {
         public static ArrayList<HorizontalData> Figure_set(String btrainNo, String lines)// MainActivity에서 열차 번호를 매개변수로 보내면 ArrayList<HorizontalData>형식으로 Return 시켜줌
         {
             String[] train_line=new String[]{"1호선","2호선","3호선","4호선","5호선","6호선","7호선","8호선","9호선","test"};
-            String[] Dbtrain = Dbconnection.Sensor(btrainNo);//매개변수로 받은 열차 번호로 DB Class에 보내어 포화도 수치값을 Return 받음
+            Dbconnection dbconnection = new Dbconnection();
+            String[] Dbtrain = dbconnection.Sensor(btrainNo);//매개변수로 받은 열차 번호로 DB Class에 보내어 포화도 수치값을 Return 받음
             // Return받은 수치값은 배열 형식
             ArrayList<HorizontalData> dataset = new ArrayList<>(); //MainActivity로 다시 Set한 포화도 그림과 수치를 Return하기 위해 dataset이라는  자료구조 변수 선언
             int count=0;
