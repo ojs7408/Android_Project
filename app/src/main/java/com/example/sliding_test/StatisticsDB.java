@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class StaristicDB {
+public class StatisticsDB {
 
     public String value ;
 

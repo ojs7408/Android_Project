@@ -63,7 +63,7 @@ public class Statistics  extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
-                StaristicDB staristicDB =new StaristicDB();
+                StatisticsDB statisticsDB =new StatisticsDB();
                  lol= ( parent.getItemAtPosition(position).toString());
                 Toast.makeText(Statistics.this, parent.getItemAtPosition(position)+" 선택", Toast.LENGTH_SHORT).show();
             }
@@ -111,9 +111,9 @@ public class Statistics  extends AppCompatActivity {
         Searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StaristicDB staristicDB =new StaristicDB();
+                StatisticsDB statisticsDB =new StatisticsDB();
 
-                String str1 = staristicDB.staristicdb(lol,time); // 차트에 들어갈 통계 값 요청
+                String str1 = statisticsDB.staristicdb(lol,time); // 차트에 들어갈 통계 값 요청
                 String str2, str3;
                 String[] result1;
                 String target = "\"h_05\":";
