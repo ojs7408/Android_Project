@@ -1,6 +1,8 @@
 package com.example.sliding_test;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 
@@ -25,14 +27,17 @@ public class Dbconnection {
          String target = "\"space1\":";
          int target_num1 = value.indexOf(target);
 
-         value2 = value.substring(target_num1,(value.substring(target_num1).indexOf("            }")+target_num1));
-         result1 = value2.split(",                "); // 1차 통계값 자르기
+         try {
+             value2 = value.substring(target_num1, (value.substring(target_num1).indexOf("            }") + target_num1));
+             result1 = value2.split(",                "); // 1차 통계값 자르기
 
-         for(int i = 0; i < 40; i++)
-         {
-             int target_num2 = result1[i].indexOf("\": \"")+4;
-             result2[i] = result1[i].substring(target_num2,(result1[i].substring(target_num2).indexOf("\"")+target_num2));
-         } // 최종 통계값 자르기
+             for (int i = 0; i < 40; i++) {
+                 int target_num2 = result1[i].indexOf("\": \"") + 4;
+                 result2[i] = result1[i].substring(target_num2, (result1[i].substring(target_num2).indexOf("\"") + target_num2));
+             } // 최종 통계값 자르기
+         }catch(StringIndexOutOfBoundsException e) {
+             Toast.makeText(MainActivity.AActiviy,"정보가 없습니다.", Toast.LENGTH_SHORT).show();
+         }
 
         return result2;
     }
