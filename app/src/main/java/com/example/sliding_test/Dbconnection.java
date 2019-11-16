@@ -106,7 +106,7 @@ public class Dbconnection extends AppCompatActivity {
 
         String str1 = task.getResult(); // SELECT된 DB값
         String str2;
-        String target = "sub";
+        String target = sub;
         int target_num1 = str1.indexOf(target);
 
         try{

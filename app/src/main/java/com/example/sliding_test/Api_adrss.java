@@ -96,7 +96,7 @@ public class Api_adrss  {
     public String trains(String lines){
         try {
             if (lines.equals("test")) {
-                return "test,천안,용산/test,1111,2222/test,인천,인천/test,1,0";
+                return "test,천안,용산,센서/test,1111,2222,3333/test,인천,인천,센서/test,1,0,1";
             }
                     BufferedReader br4 = null;
                     String urlstr = "http://swopenAPI.seoul.go.kr/api/subway/6a4565616c6a6777393145686e4972/json/realtimePosition/1/50/" + lines;

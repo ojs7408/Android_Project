@@ -10,7 +10,7 @@ public class SeatCheck {
     public static ArrayList<HorizontalData> SeatCheck_set(String btrainNo, String lines){
 
         String[] train_line=new String[]{"1호선","2호선","3호선","4호선","5호선","6호선","7호선","8호선","9호선","test"};
-        String[] Dbtrain = Dbconnection.UseTable(btrainNo);
+        String[] Dbtrain = Dbconnection.Sensor(btrainNo);
         String[] test = new String[10];
         ArrayList<HorizontalData> seatset = new ArrayList<>();
         int i=0;
@@ -26,7 +26,7 @@ public class SeatCheck {
 
         for(int j=0,k=0;k<count;k++)
         {
-            test[k]=Dbtrain[j]+Dbtrain[j+1]+Dbtrain[j+2];
+            test[k]=Dbtrain[j+10]+Dbtrain[j+11]+Dbtrain[j+12];
             j+=3;
         }
 
