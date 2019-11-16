@@ -12,7 +12,8 @@ public class Dbconnection extends AppCompatActivity {
 
     public static String[] Subway(String sub){
 
-        String test = "https://seulgi.me/average.php"; // php 선택
+         String test = "https://seulgi.me/average.php";
+
         URLConnector task = new URLConnector(test); // DB 연결
 
         task.start(); // php running
@@ -51,6 +52,8 @@ public class Dbconnection extends AppCompatActivity {
     } //쾌적도 값 10개 가져오기
 
     public static String[] UseTable(String sub){
+
+
         String test = "https://seulgi.me/chair.php"; // php 선택
         URLConnector task = new URLConnector(test); // DB 연결
 
@@ -90,7 +93,67 @@ public class Dbconnection extends AppCompatActivity {
 
     } //좌석 사용 유무 값 30개 가져오기
 
-    public static String[] Sensor(String sub){
+    public static String[] Sensor1(String sub,String type){ //혼잡도 //
+        String test = "https://seulgi.me/sensor.php"; // php 선택
+        URLConnector task = new URLConnector(test); // DB 연결
+
+        task.start(); // php running
+
+        try{
+            task.join(); // 종료시까지 대기
+            System.out.println("waiting... for result");
+        }
+        catch(InterruptedException e){
+
+        }
+
+        String str1 = task.getResult(); // SELECT된 DB값
+        String str2;
+        String target = sub;
+        int target_num1 = str1.indexOf(target);
+
+        try{
+            str2 = str1.substring(target_num1+6,(str1.substring(target_num1).indexOf("/")+target_num1));
+            String[] result = str2.split(", ");
+            String[] result1=new String[10];
+            String[] result2=new String[30];
+
+            for(int i=0; i < result.length; i++)
+            {
+                System.out.println(result[i]);
+            }
+
+
+            if(type.equals("Figure"))
+            {
+                for (int i=0;i<10;i++)
+                {
+                    result1[i]=result[i];
+                }
+                return result1;
+            }
+
+            else if (type.equals("SeatCheck"))
+            {
+                for(int i=10,j=0;i<40;i++,j++)
+                {
+                    result2[j]=result[i];
+                }
+                return result2;
+            }
+            String[] error = {"error"};
+            return error;
+        } catch (java.lang.StringIndexOutOfBoundsException e) {
+            String[] error = {"error"};
+            return error;
+
+        } // 반환해주기 위한 문자열 자르기
+
+    } // DB로 센서 값 가져오기
+
+
+
+    public static String[] Sensor2(String sub){ //혼잡도
         String test = "https://seulgi.me/sensor.php"; // php 선택
         URLConnector task = new URLConnector(test); // DB 연결
 
@@ -127,4 +190,21 @@ public class Dbconnection extends AppCompatActivity {
 
     } // DB로 센서 값 가져오기
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 } // 받아오는 데이터가 적은 기능에 대한 DB처리
+
+
