@@ -54,14 +54,22 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //network 주소 받기
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        Intent intent = getIntent(); /*데이터 수신*/
+        btrainNo = intent.getExtras().getString("train");
+        lines = intent.getExtras().getString("line");
+        String arrival = intent.getExtras().getString("arrival");
+        String current = intent.getExtras().getString("current");
+        String upline = intent.getExtras().getString("upline");
+        if(btrainNo.equals("99999")) {
+            setContentView(R.layout.activity_main);
+            //network 주소 받기
+            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            lm.removeUpdates(locationListener);    // Stop the update if it is in progress.
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            lm.requestLocationUpdates("network", 0, 0, locationListener);
         }
-        lm.requestLocationUpdates("network", 0, 0, locationListener);
-
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +164,16 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
 
             }
         });
+            if( upline.equals("1")) {
+                Mainviewtext.setText(arrival  + current +"하행");
+
+            }
+            else if(upline.equals("0")){
+                Mainviewtext.setText(arrival  + current +"상행");
+            }else{
+                Mainviewtext.setText( current);
+        }
+
 
         ArrayList<HorizontalData> data1 = new ArrayList<>();
         ArrayList<HorizontalData> data2 = new ArrayList<>();

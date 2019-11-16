@@ -45,7 +45,12 @@ public class Loading extends AppCompatActivity {
                 e.printStackTrace();
             }
             Intent intent = new Intent(Loading.this, MainActivity.class);
-            intent.putExtra("train","0000");
+
+            intent.putExtra("train","99999");
+            intent.putExtra("line"," ");
+            intent.putExtra("arrival"," ");
+            intent.putExtra("current","클릭 !\n\n지하철을 설정해 주세요 !");
+            intent.putExtra("upline"," ");
             startActivity(intent);
             finish();
 

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 public class Popupmain extends Activity  {
 
-    String[] list3;
+    String[] list1,list2,list3,list4;
     String tmp ="1",list;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,10 +129,10 @@ public class Popupmain extends Activity  {
             String Trains = Searchs[1];
             String Arrival = Searchs[2];
             String Upline = Searchs[3];
-            String[] list1 = Current.split(",");            //현재역
-            String[] list2 = Arrival.split(",");            //도착역
+             list1 = Current.split(",");            //현재역
+             list2 = Arrival.split(",");            //도착역
             list3 = Trains.split(",");             //열차번호
-            String[] list4 = Upline.split(",");             //상하행선
+             list4 = Upline.split(",");             //상하행선
         // api 검색끝
         ListView listview ;
         ListViewAdapter adapter;
@@ -153,9 +153,12 @@ public class Popupmain extends Activity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent (Popupmain.this,SvsmainActivity.class);
+                Intent intent = new Intent (Popupmain.this,MainActivity.class);
                 intent.putExtra("train",list3[position]);
                 intent.putExtra("line",list);
+                intent.putExtra("arrival",list1[position]);
+                intent.putExtra("current",list2[position]);
+                intent.putExtra("upline",list4[position]);
                 startActivity(intent);
                 finish();
             }
