@@ -110,7 +110,7 @@ public class Dbconnection extends AppCompatActivity {
         int target_num1 = str1.indexOf(target);
 
         try{
-            str2 = str1.substring(target_num1,(str1.substring(target_num1).indexOf("/")+target_num1));
+            str2 = str1.substring(target_num1+2,(str1.substring(target_num1).indexOf("/")+target_num1));
             String[] result = str2.split(", ");
 
             for(int i=0; i < result.length; i++)
