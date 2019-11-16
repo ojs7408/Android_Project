@@ -1,7 +1,11 @@
 package com.example.sliding_test;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -57,10 +61,7 @@ public class SvsmainActivity extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(SvsmainActivity.this, "새로고침 중입니다...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent (SvsmainActivity.this,MainActivity.class);
-                intent.putExtra("train","0000");
-                startActivity(intent);
+                Toast.makeText(SvsmainActivity.this, "초기화면으로 이동합니다...", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -111,8 +112,6 @@ public class SvsmainActivity extends AppCompatActivity {
         }
 
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
         mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mLayoutManager2 = new LinearLayoutManager(this);
@@ -123,9 +122,11 @@ public class SvsmainActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); /*데이터 수신*/
         String trainNo = intent.getExtras().getString("train");
+        String line = intent.getExtras().getString("line");
         Mainviewtext.setText(trainNo);
         data1.clear();
-        data1=  Figure.Figure_set(trainNo);
+        System.out.println(line);
+        data1=  Figure.Figure_set(trainNo,line);
 
         mAdapter = new HorizontalAdapter();
         mAdapter.setData(data1);
@@ -134,30 +135,7 @@ public class SvsmainActivity extends AppCompatActivity {
 
         mVerticalView.setAdapter(mAdapter);
         mVerticalView2.setAdapter(mAdapter2);
-
-
-
-
     }
-
-
-    @Override
-    public void onBackPressed() {
-        long tempTime = System.currentTimeMillis(); // 현재 시각과 날짜와의 차이를 long으로 표현
-        long intervalTime = tempTime - backPressedTime; // 위에 선언된 tempTime - Main문 처음에 있던 backPressedTime과의 차이
-
-        if(0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
-        {
-            super.onBackPressed();
-        }
-        else
-        {
-            backPressedTime = tempTime;
-            Toast.makeText(this, "이전버튼을 한번 더 누르시면 하철2가 종료됩니다.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
 }
 
 

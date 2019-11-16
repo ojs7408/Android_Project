@@ -1,25 +1,17 @@
 package com.example.sliding_test;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 public class Popupmain extends Activity  {
 
     String[] list3;
-    String tmp ="1";
+    String tmp ="1",list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +120,7 @@ public class Popupmain extends Activity  {
             }
         });
         Intent intent = getIntent(); /*데이터 수신*/
-        String list = intent.getExtras().getString("line");
+         list = intent.getExtras().getString("line");
             Api_adrss api_adrss = new Api_adrss();
             String Search = api_adrss.trains(list);
             System.out.println(Search);
@@ -163,6 +155,7 @@ public class Popupmain extends Activity  {
 
                 Intent intent = new Intent (Popupmain.this,SvsmainActivity.class);
                 intent.putExtra("train",list3[position]);
+                intent.putExtra("line",list);
                 startActivity(intent);
                 finish();
             }

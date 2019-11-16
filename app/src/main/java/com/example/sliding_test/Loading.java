@@ -2,13 +2,8 @@ package com.example.sliding_test;
 
 import android.Manifest;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +11,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import static androidx.core.content.PermissionChecker.PERMISSION_DENIED;
-
+// 권한 획득여부 질의 및 스레드생성 후 sleep 이후 메인으로 넘김
 
 public class Loading extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST = 1000;
-    ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +34,7 @@ public class Loading extends AppCompatActivity {
         }
         public void run() {
 
-            int check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);
+            int check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);           //권한 획득까지 기다림
             while (check ==PERMISSION_DENIED)
             {
                  check =ContextCompat.checkSelfPermission(Loading.this, Manifest.permission.ACCESS_FINE_LOCATION);

@@ -1,5 +1,7 @@
 package com.example.sliding_test;
 
+import android.location.Geocoder;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -7,13 +9,12 @@ import java.net.URL;
 
 
 public class Api_adrss  {
-    String adrs,index_y,index_x,index_stayion,index_line,index_btrainNo,line;
+    String adrs,index_y,index_x,index_stayion,index_line,index_btrainNo;
     String index_trains="열차",index_Arrival="도착역",index_Current="현재역",index_Upline="상행하행";
-    public String adrss(String string2,String string1){
-        BufferedReader br = null;
-        BufferedReader br1 = null;
-        BufferedReader br2 = null;
-        BufferedReader br3 = null;
+    public String adrss(String string1){
+        BufferedReader br =  null;
+
+/*
         try{
             String urlstr = "http://api.vworld.kr/req/address?service=address&request=getAddress&key=C7E2DE1C-8090-3CDD-A600-D76315E08739&point="+ string2+","+ string1 +"&type=BOTH&format=json";
             URL url = new URL(urlstr);
@@ -29,9 +30,11 @@ public class Api_adrss  {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-
+*/
         try{
-            String urlstr = "http://api.vworld.kr/req/address?service=address&request=getCoord&key=C7E2DE1C-8090-3CDD-A600-D76315E08739&type=PARCEL&address="+adrs+"&format=json&crs=EPSG:5181";
+            BufferedReader br1 = null;
+
+            String urlstr = "http://api.vworld.kr/req/address?service=address&request=getCoord&key=C7E2DE1C-8090-3CDD-A600-D76315E08739&type=PARCEL&address="+string1+"&format=json&crs=EPSG:5181";
             URL url = new URL(urlstr);
             HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
             urlconnection.setRequestMethod("GET");
@@ -48,6 +51,7 @@ public class Api_adrss  {
             System.out.println(e.getMessage());
         }
         try{
+            BufferedReader br2 = null;
             String urlstr ="http://swopenapi.seoul.go.kr/api/subway/715a4662486a677736326e4c655544/json/nearBy/0/1/"+index_x+"/"+index_y;
             URL url = new URL(urlstr);
             HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
@@ -65,6 +69,7 @@ public class Api_adrss  {
 
         }
         try{
+            BufferedReader br3 = null;
         String urlstr ="http://swopenAPI.seoul.go.kr/api/subway/6a4565616c6a6777393145686e4972/json/realtimeStationArrival/0/1/"+index_stayion;
         URL url = new URL(urlstr);
         HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
@@ -74,13 +79,19 @@ public class Api_adrss  {
         String line3;
         if((line3 = br3.readLine()) != null)
             result3 = result3 + line3 + "\n";
-        int target_btrainNo= result3.indexOf("\"btrainNo\":\"")+12;
-        index_btrainNo = result3.substring(target_btrainNo, (result3.substring(target_btrainNo).indexOf("\",\"bstatnId\"")+target_btrainNo));
+            int target_btrainNo= result3.indexOf("\"btrainNo\":\"")+12;
+            int target_statnm = result3.indexOf("\"statnNm\":\"") + 11;
+            int target_upline = result3.indexOf("\"updnLine\":\"") + 12;
+            int target_statntnm = result3.indexOf("bstatnNm\":\"") + 11;
+            index_btrainNo = result3.substring(target_btrainNo, (result3.substring(target_btrainNo).indexOf("\",\"bstatnId\"")+target_btrainNo));
+            index_Current =  result3.substring(target_statnm, (result3.substring(target_statnm).indexOf("\",\"trainCo\"") + target_statnm));     //현재역
+            index_Upline =  result3.substring(target_upline, (result3.substring(target_upline).indexOf("\",\"trainLineNm") + target_upline));
+            index_Arrival =  result3.substring(target_statntnm, (result3.substring(target_statntnm).indexOf("\",\"recptnDt") + target_statntnm));     //도착역
         }catch (Exception e) {
-            String er="통신및위치오류";
+            String er=" ,통신및위치오류, , , ";
             return er;
         }
-        return index_btrainNo;
+        return index_btrainNo+","+index_Current+","+index_Arrival+","+index_Upline+","+index_line ;
     }
     public String trains(String lines){
         try {

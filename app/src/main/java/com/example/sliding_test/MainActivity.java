@@ -9,6 +9,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,12 +21,17 @@ import android.provider.Settings;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Thread.sleep;
 
@@ -36,11 +43,12 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
     private HorizontalAdapter mAdapter, mAdapter2;
     private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
-    ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     public int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
+    ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     LocationManager locationManager;
     TextView Mainviewtext;
     ImageButton btn;
+     String btrainNo,lines;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
             return;
         }
         lm.requestLocationUpdates("network", 0, 0, locationListener);
+
         btn = (ImageButton)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +84,6 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
                 }
                 lm.requestLocationUpdates("network", 0, 0, locationListener);
                 Toast.makeText(MainActivity.this, "새로고침 중입니다...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent (MainActivity.this,SvsmainActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
         Mainviewtext = (TextView) findViewById(R.id.mainviewtext);
@@ -113,20 +119,54 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
                 startActivityForResult(intent, 1);
             }
         });
+        Button button =findViewById(R.id.gmlakd);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        ArrayList<HorizontalData> data1 = new ArrayList<>(); //포화도 View를 위한 자료구조 변수 선언
-        ArrayList<HorizontalData> data2 = new ArrayList<>(); //노약자석 View를 위한 자료구조 변수 선언
 
-        int i = 0; // while문을 위한 index
+                ArrayList<HorizontalData> data1 = new ArrayList<>(); //포화도 View를 위한 자료구조 변수 선언
+                ArrayList<HorizontalData> data2 = new ArrayList<>(); //노약자석 View를 위한 자료구조 변수 선언
 
-        //해당 지하철 칸 수 만큼 지하철 이미지를 자료구조 변수에 넣어줌
+                int i = 0; // while문을 위한 index
+                while (i < MAX_ITEM_COUNT) {
+                    data1.add(new HorizontalData(R.drawable.side_traindefault, i+1 +""));
+                    data2.add(new HorizontalData(R.drawable.top_train0, ""));
+                    i++;
+                    //
+                }
+
+                mLayoutManager = new LinearLayoutManager(MainActivity.this);
+                mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                mLayoutManager2 = new LinearLayoutManager(MainActivity.this);
+                mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+                mVerticalView.setLayoutManager(mLayoutManager);
+                mVerticalView2.setLayoutManager(mLayoutManager2);
+//해당 지하철 칸 수 만큼 지하철 이미지를 자료구조 변수에 넣어줌
+                data1.clear();
+                data1=  Figure.Figure_set(btrainNo, lines);         //지하철 번호,호선를 Figure로 보내 해당 지하철의 포화도 수치를 받아옴, 받아오는 형식은 Arraylist<HorizontalData>
+                mAdapter = new HorizontalAdapter();
+                mAdapter.setData(data1);
+                mAdapter2 = new HorizontalAdapter();
+                mAdapter2.setData(data2);
+
+                //해당 지하철 칸 수 만큼 지하철 이미지를 자료구조 변수에 넣어줌
+                mVerticalView.setAdapter(mAdapter);
+                mVerticalView2.setAdapter(mAdapter2);
+
+            }
+        });
+
+        ArrayList<HorizontalData> data1 = new ArrayList<>();
+        ArrayList<HorizontalData> data2 = new ArrayList<>();
+
+        int i = 0;
         while (i < MAX_ITEM_COUNT) {
             data1.add(new HorizontalData(R.drawable.side_traindefault, i+1 +"")); //기본 이미지, 기본 수치
             data2.add(new HorizontalData(R.drawable.top_train0, "")); //기본 이미지는 넣어주나 수치 x
             i++;
             //
         }
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -136,10 +176,6 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
         mLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL); // 지하철 노약자석 이미지를 가로로 배열시키기 위해 LinearLayout Horizontal로 새로 생성
         mVerticalView.setLayoutManager(mLayoutManager); //새로 생성한 LinearLayout을 커스텀한 RecycleView에 넣어줌
         mVerticalView2.setLayoutManager(mLayoutManager2); //새로 생성한 LinearLayout을 커스텀한 RecycleView에 넣어줌
-        Intent intent = getIntent(); /*데이터 수신*/
-        String trainNo = intent.getExtras().getString("train");
-        data1.clear(); //자료구조 변수 초기화
-        data1=  Figure.Figure_set(trainNo); //지하철 번호를 Figure로 보내 해당 지하철의 포화도 수치를 받아옴, 받아오는 형식은 Arraylist<HorizontalData>
         mAdapter = new HorizontalAdapter();
         mAdapter.setData(data1); //포화도 이미지, 수치 Reset
         mAdapter2 = new HorizontalAdapter();
@@ -147,8 +183,6 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
 
         mVerticalView.setAdapter(mAdapter); //포화도 이미지,수치를 적용한 View를 화면에 띄움
         mVerticalView2.setAdapter(mAdapter2); //노약자석 사용유무 이미지를 적용한 View를 화면에 띄움
-
-
 
 
     }
@@ -172,22 +206,31 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
     private LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-            // Get the last location, and update UI.
+            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             lastKnownLocation = location;
-            double longitude=lastKnownLocation.getLongitude();
-            double latitude=lastKnownLocation.getLatitude();
-            String tmp = Double.toString(longitude);
-            String tmp2 = Double.toString(latitude);
-            Api_adrss api_adrss=new Api_adrss();                        //API 클래스 생성
-            String btrainNo = api_adrss.adrss(tmp, tmp2);
-            Mainviewtext.setText(btrainNo);           //API 받아온 부분
-            // Stop the update to prevent changing the location.
+            //double longitude = lastKnownLocation.getLongitude();
+//            double latitude = lastKnownLocation.getLatitude();
+
+            String ardds =getAddressFromLocation(lastKnownLocation,Locale.KOREA);
+            String arddss = ardds.replace("대한민국 ", "");
+            Api_adrss api_adrss = new Api_adrss();                        //API 클래스 생성
+            String apireturn = api_adrss.adrss(arddss);                  //API 받아온 부분
+            String[] btrain = apireturn.split(",");                       //0:지하철번호 1:역이름 2:도착역이름:상하행
+            btrainNo = btrain[0];
+            String btrainname = btrain[1];
+            String btrainarr = btrain[2];
+            String btrainupdown = btrain[3];
+            lines = btrain[4];
+            String tmps = "1",tmps1="0";
+            if (btrainupdown.equals(tmps)) {
+                btrainupdown="하행";
+                } else if(btrainupdown.equals(tmps1)) {
+                btrainupdown="상행";
+             }
+
+            Mainviewtext.setText(btrainname + "    " + btrainarr + "     "+btrainupdown);
+
             lm.removeUpdates(this);
-            Intent intent = new Intent (MainActivity.this,SvsmainActivity.class);
-            intent.putExtra("train",btrainNo);
-            finish();
-            startActivity(intent);
 
         }
         @Override
@@ -200,5 +243,34 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
         public void onStatusChanged(String provider, int status, Bundle extras) {}
 
     };
+    String getAddressFromLocation(Location location, Locale locale) {
+        List<Address> addressList = null ;
+        Geocoder geocoder = new Geocoder( this);
+        try {
+            addressList = geocoder.getFromLocation(
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    1
+            );
+        } catch (IOException e) {
+            Toast. makeText( this, "위치로부터 주소를 인식할 수 없습니다. 네트워크가 연결되어 있는지 확인해 주세요.", Toast.LENGTH_SHORT ).show();
+            e.printStackTrace();
+            return "주소 인식 불가" ;
+        }
+        if (1 > addressList.size()) {
+            return "해당 위치에 주소 없음" ;
+        }
+        Address address = addressList.get(0);
+        StringBuilder addressStringBuilder = new StringBuilder();
+        for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+            addressStringBuilder.append(address.getAddressLine(i));
+            if (i < address.getMaxAddressLineIndex())
+                addressStringBuilder.append("\n");
+        }
+
+        return addressStringBuilder.toString();
+    }
+
+
 }
 

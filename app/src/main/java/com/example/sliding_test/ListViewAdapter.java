@@ -32,26 +32,17 @@ public class ListViewAdapter extends BaseAdapter {
         }
         TextView titleTextView =  convertView.findViewById(R.id.itemss1) ;
         TextView descTextView =  convertView.findViewById(R.id.itemss2) ;
-       // ImageView imageView = convertView.findViewById(R.id.itemss3);
         TextView uplineTextView = convertView.findViewById(R.id.itemss4);
         ListViewItem listViewItem = listViewItemList.get(position);
         titleTextView.setText(listViewItem.getCurrent());
         descTextView.setText(listViewItem.getArrival());
         uplineTextView.setText(listViewItem.getUpline());
-        /*if(listViewItem.getUpline().equals("1")) {
-            imageView.setImageDrawable
-        }
-        else{
-            imageView.setImageDrawable
-        }*/
         return convertView;
     }
-    // 지정한 위치(position)에 있는 데이터와 관계된 아이템(row)의 ID를 리턴.
     @Override
     public long getItemId(int position) {
         return position ;
     }
-    // 지정한 위치(position)에 있는 데이터 리턴
     @Override
     public Object getItem(int position) {
         return listViewItemList.get(position) ;

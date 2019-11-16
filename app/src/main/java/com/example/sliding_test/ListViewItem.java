@@ -29,5 +29,4 @@ public class ListViewItem {
     public String getUpline() {
         return this.uplineStr ;
     }
-    public String gettrains() { return  this.trainsStr;}
 }
