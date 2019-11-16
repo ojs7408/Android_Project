@@ -119,6 +119,7 @@ public class Popupmain extends Activity  {
 
             }
         });
+        final MainActivity mainActivity= MainActivity.AActiviy;
         Intent intent = getIntent(); /*데이터 수신*/
          list = intent.getExtras().getString("line");
             Api_adrss api_adrss = new Api_adrss();
@@ -160,6 +161,7 @@ public class Popupmain extends Activity  {
                 intent.putExtra("current",list2[position]);
                 intent.putExtra("upline",list4[position]);
                 startActivity(intent);
+                mainActivity.finish();
                 finish();
             }
         });

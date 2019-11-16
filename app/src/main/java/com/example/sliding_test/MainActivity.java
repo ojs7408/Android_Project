@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
     private LinearLayoutManager mLayoutManager, mLayoutManager2;
     private Location lastKnownLocation = null;
     public int MAX_ITEM_COUNT = 10;               //  4량 2호선 6량 8호선이나 분당선, 8량 5, 6, 7호선, 10량 1, 2, 3, 4호선
+    public static MainActivity AActiviy;
     ImageButton Menubtn;    // 왼쪽 상단 팝업 버튼
     LocationManager locationManager;
     TextView Mainviewtext;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AActiviy=MainActivity.this;
         Intent intent = getIntent(); /*데이터 수신*/
         btrainNo = intent.getExtras().getString("train");
         lines = intent.getExtras().getString("line");
@@ -152,7 +154,9 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
                 mVerticalView2.setLayoutManager(mLayoutManager2);
 //해당 지하철 칸 수 만큼 지하철 이미지를 자료구조 변수에 넣어줌
                 data1.clear();
-                data1=  Figure.Figure_set(btrainNo, lines);         //지하철 번호,호선를 Figure로 보내 해당 지하철의 포화도 수치를 받아옴, 받아오는 형식은 Arraylist<HorizontalData>
+                data1 = Figure.Figure_set(btrainNo, lines);         //지하철 번호,호선를 Figure로 보내 해당 지하철의 포화도 수치를 받아옴, 받아오는 형식은 Arraylist<HorizontalData>
+                data2.clear();
+                data2 = SeatCheck.SeatCheck_set(btrainNo,lines);
                 mAdapter = new HorizontalAdapter();
                 mAdapter.setData(data1);
                 mAdapter2 = new HorizontalAdapter();
@@ -291,4 +295,5 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
 
 
 }
+
 
