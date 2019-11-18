@@ -36,7 +36,7 @@ import java.util.Locale;
 import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity { //현재 지하철 정보 화면 클래스
-
+//
     private final long FINISH_INTERVAL_TIME = 20000; // 뒤로가기 버튼 인식 시간 2초
     private long backPressedTime = 0; // 2초를 측정하기 위해 사용하는 변수
     private RecyclerView mVerticalView, mVerticalView2;
