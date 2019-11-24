@@ -64,8 +64,8 @@ public class Statistics  extends AppCompatActivity {
             {
                 textView.setText("선택한 역은 = > " + parent.getItemAtPosition(position));  //선택한거 넘길수있음
                 StatisticsDB statisticsDB =new StatisticsDB();
-                 lol= ( parent.getItemAtPosition(position).toString());
-                Toast.makeText(Statistics.this, parent.getItemAtPosition(position)+" 선택", Toast.LENGTH_SHORT).show();
+                 lol= ( parent.getItemAtPosition(position).toString()); //lol 에 다롭다운한거(현제 선택한 포지션 값)을 저장.toString 사용
+                Toast.makeText(Statistics.this, parent.getItemAtPosition(position)+" 선택", Toast.LENGTH_SHORT).show(); //선택하면 Toast로 알려줌
             }
 
             @Override
@@ -87,7 +87,7 @@ public class Statistics  extends AppCompatActivity {
 
         Dateset.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //클릭 리스너 (클릭 후 반응)시 날짜 설정
 
                 DatePickerDialog dialog = new DatePickerDialog(Statistics.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -98,7 +98,7 @@ public class Statistics  extends AppCompatActivity {
                         String months =Integer.toString(month);
                         String dayOfMonths =Integer.toString(dayOfMonth);
                         time=(years+months+dayOfMonths);
-                        Toast.makeText(Statistics.this,year+"-"+month+"-"+dayOfMonth+"",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Statistics.this,year+"-"+month+"-"+dayOfMonth+"",Toast.LENGTH_SHORT).show(); //선택 후 토스트로 선택 날짜 보여줌
                     }
                 },Today_year,Today_month-1,Today_day);
 
@@ -116,7 +116,7 @@ public class Statistics  extends AppCompatActivity {
                 String str1 = statisticsDB.staristicdb(lol,time); // 차트에 들어갈 통계 값 요청
                 String str2, str3;
                 String[] result1;
-                String target = "\"h_05\":";
+                String target = "\"h_05\":";  //php문에서 끌어올때 h_05
                 int target_num1 = str1.indexOf(target);
 
                 try{
@@ -139,7 +139,7 @@ public class Statistics  extends AppCompatActivity {
 
                     LineDataSet dataset = new LineDataSet(entries, "# of Calls");
 
-                    ArrayList<String> labels = new ArrayList<>();
+                    ArrayList<String> labels = new ArrayList<>();  //레이블에 시간 보여주기위함 ArrayList<스트링형>으로 구현
                     int i=5;
                     while (i<24) {
                         labels.add(i + "시");
@@ -150,8 +150,8 @@ public class Statistics  extends AppCompatActivity {
 
 
 
-                    LineData data = new LineData(labels, dataset);
-                    dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
+                    LineData data = new LineData(labels, dataset); //차트 만들기 위해서 new LineData안에 레이블이랑 데이터셋 값 집어넣어줌
+                    dataset.setColors(ColorTemplate.COLORFUL_COLORS); //여기는 COLORFUL_COLORS말고 다른 색상 사용가능.
 
                     XAxis xAxis = lineChart.getXAxis();
                     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -186,7 +186,7 @@ public class Statistics  extends AppCompatActivity {
 
 
 
-        Menubtn = (ImageButton) findViewById(R.id.Menubtn);
+        Menubtn = (ImageButton) findViewById(R.id.Menubtn); //메뉴 버튼
         Menubtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
