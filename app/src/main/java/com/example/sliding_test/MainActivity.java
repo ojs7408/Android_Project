@@ -169,11 +169,11 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
             }
         });
             if( upline.equals("1")) {
-                Mainviewtext.setText(arrival  + current +"하행");
+                Mainviewtext.setText(arrival  +"    /   "+ current +"   /   "+"하행");
 
             }
             else if(upline.equals("0")){
-                Mainviewtext.setText(arrival  + current +"상행");
+                Mainviewtext.setText(arrival  +"    /   "+ current +"   /   "+"상행");
             }else{
                 Mainviewtext.setText( current);
         }
