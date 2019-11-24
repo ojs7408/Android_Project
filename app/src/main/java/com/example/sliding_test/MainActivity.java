@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this,Popupmain.class);
-                intent.putExtra("line","1호선");
+                intent.putExtra("line","test");
                 startActivityForResult(intent, 1);
             }
         });
