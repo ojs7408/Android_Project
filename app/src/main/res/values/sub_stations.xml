@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="sub_stations" >
-        <item>0668</item>
-        <item>강남역</item>
-        <item>교대역</item>
-        <item>천안역</item>
-        <item>아산역</item>
+        <item>천안</item>
+        <item>아산</item>
+        <item>수원</item>
+        <item>용산</item>
     </string-array>
 </resources>
