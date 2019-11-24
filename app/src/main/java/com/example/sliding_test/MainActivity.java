@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity { //현재 지하철 정보 
                 btrainupdown="상행";
              }
 
-            Mainviewtext.setText(btrainname + "    " + btrainarr + "     "+btrainupdown);
+            Mainviewtext.setText(btrainname + "  /  " + btrainarr + "  /   "+btrainupdown);
 
             lm.removeUpdates(this);
 
